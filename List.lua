@@ -50,7 +50,7 @@ function Spy:RefreshCurrentList(player, source)
 			elseif Spy.db.profile.DisplayListData == "NameLevelOnly" then
 				description = level.." "
 			elseif Spy.db.profile.DisplayListData == "NameGuild" then
-					description = guild
+				description = guild
 			end
 			
 			if mode == 1 and Spy.InactiveList[data.player] then
@@ -907,7 +907,7 @@ function Spy:ButtonClicked(self, button)
 			else
 				if not InCombatLockdown() then
 					self:SetAttribute("macrotext", "/targetexact "..name)
-				end	
+				end
 			end
 		elseif button == "RightButton" then
 			Spy:BarDropDownOpen(self)
