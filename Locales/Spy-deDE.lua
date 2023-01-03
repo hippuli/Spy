@@ -126,6 +126,7 @@ L["TooltipDisplayLastSeenDescription"] = "Wählen Sie diese Einstellung, um die 
 L["DisplayListData"] = "Wählen Sie die anzuzeigenden feindlichen Daten aus"
 L["Name"] = "Name"
 L["Class"] = "Klasse"
+L["Rank"] = "Rang"
 L["SelectFont"] = "Wählen Sie eine Schriftart"
 L["SelectFontDescription"] = "Wählen Sie eine Schriftart für das Spy-Fenster."
 L["RowHeight"] = "Wählen Sie die Zeilenhöhe aus"
@@ -298,7 +299,7 @@ L["Won/Lost"] = "Gewonnen/Verloren"
 L["KOS"] = "KOS"
 L["Reason"] = "Grund"	
 L["HonorKills"] = "Ehrenvolle Siege"
-L["PvPDeatchs"] = "PvP Tode"
+L["PvPDeaths"] = "PvP Tode"
 
 --Ausgabemeldungen
 L["VersionCheck"] = "|cffc41e3aWarnung! Die falsche Version von Spy ist installiert. Diese Version ist für Wrath of the Lich King - Classic."
