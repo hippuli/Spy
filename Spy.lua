@@ -7,7 +7,7 @@ local fonts = SM:List("font")
 local _
 
 Spy = LibStub("AceAddon-3.0"):NewAddon("Spy", "AceConsole-3.0", "AceEvent-3.0", "AceComm-3.0", "AceTimer-3.0")
-Spy.Version = "3.1.3"
+Spy.Version = "3.1.4"
 Spy.DatabaseVersion = "1.1"
 Spy.Signature = "[Spy]"
 Spy.ButtonLimit = 15
@@ -2211,6 +2211,12 @@ timestamp, event, hideCaster, srcGUID, srcName, srcFlags, sourceRaidFlags, dstGU
 		if event == "SPELL_SUMMON" and srcName == Spy.CharacterName then
 			local petGUID = dstGUID
 			Spy.PetGUID[petGUID] = time()
+		end
+		if event == "ENVIRONMENTAL_DAMAGE" and dstGUID == UnitGUID("player") then
+--			local environmentalType = arg12
+--			local amount = arg13
+			Spy.LastAttack = nil		
+--			print(timestamp, "Ouch ", environmentalType, amount, " hurts!")
 		end		
 	end
 end
@@ -2232,7 +2238,7 @@ function Spy:PlayerDeadEvent()
 				end
 				playerData.loses = playerData.loses + 1
 			end
-		end	
+		end
 	end
 end
 
