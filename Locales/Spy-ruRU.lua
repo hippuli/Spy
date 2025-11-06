@@ -62,10 +62,10 @@ L["Everlook"] = "Круговзор"
 L["Gadgetzan"] = "Прибамбасск"
 L["Ratchet"] = "Кабестан"
 L["The Salty Sailor Tavern"] = "Таверна \"Старый моряк\""
+L["Cenarion Hold"] = "Крепость Кенария"
 L["Shattrath City"] = "Шаттрат"
 L["Area 52"] = "Зона 52"
 L["Dalaran"] = "Даларан"
-L["Dalaran (Northrend)"] = "Даларан (Нордскол)"
 L["Bogpaddle"] = "Веслотопь"
 L["The Vindicaar"] = "Виндикар"
 L["Krasus' Landing"] = "Площадка Краса"
@@ -78,6 +78,10 @@ L["Sanctum of the Sages"] = "Святилище жрецов"
 L["Rustbolt"] = "Ржавый болт"
 L["Oribos"] = "Орибос"
 L["Valdrakken"] = "Вальдраккен"
+L["The Roasted Ram"] = "Жареный барашек"
+L["Dornogal"] = "Дорногал"
+L["Stonelight Rest"] = "Приют Каменного Света"
+L["Delver's Headquarters"] = "Штаб исследователей"
 
 -- Display
 L["DisplayOptions"] = "дисплей"
@@ -280,6 +284,8 @@ L["Ignore"] = "Ignore"
 L["IgnoreDescription"] = "Добавить/удалить игрока в/из список игнорируемых."
 L["Test"] = "Test"
 L["TestDescription"] = "Отображает предупреждение, чтобы вы могли изменить его положение."
+L["Sanctuary"] = "Sanctuary"
+L["SanctuaryDescription"] = "Show/Hide Spy in a Sanctuary area."
 
 -- Lists
 L["Nearby"] = "Nearby"
@@ -302,10 +308,10 @@ L["HonorKills"] = "Почетные убийства"
 L["PvPDeaths"] = "Смерти в PvP"
 
 -- Output messages
-L["VersionCheck"] = "|cffc41e3aПредупреждение! Неправильная версия Spy установлена. Эта версия предназначена для Wrath of the Lich King - Classic."
+L["VersionCheck"] = "|cffc41e3aПредупреждение! Неправильная версия Spy установлена. Удалите эту версию и установите Spy Classic."
 L["SpyEnabled"] = "|cff9933ffSpy аддон включен."
 L["SpyDisabled"] = "|cff9933ffSpy аддон отключен. Напишите |cffffffff/spy show|cff9933ff  для включения."
-L["UpgradeAvailable"] = "|cff9933ffA Новая версия Spy доступна для скачивания. Вы можете загрузить её тут:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-wotlk"
+L["UpgradeAvailable"] = "|cff9933ffA Новая версия Spy доступна для скачивания. Вы можете загрузить её тут:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-classic"
 L["AlertStealthTitle"] = "Обнаружен игрок в невидимости!"
 L["AlertKOSTitle"] = "Обнаружен враг из списка Kill On Sight!"
 L["AlertKOSGuildTitle"] = "Обнаружен враг из гильдии в списке Kill On Sight!"
@@ -357,6 +363,7 @@ L["Player"] = " (Игрок)"
 L["KOSReason"] = "Kill On Sight"
 L["KOSReasonIndent"] = "    "
 L["KOSReasonOther"] = "Введите собственную причину ..."
+L["EnterKOSReason"] = "Введите причину Kill on Sight для %s"
 L["KOSReasonClear"] = "Очистить"
 L["StatsWins"] = "|cff40ff00Победы: "
 L["StatsSeparator"] = "  "
@@ -440,25 +447,6 @@ Spy_KOSReasonList = {
 	},
 }
 
-StaticPopupDialogs["Spy_SetKOSReasonOther"] = {
-	preferredIndex=STATICPOPUPS_NUMDIALOGS,  -- http://forums.wowace.com/showthread.php?p=320956
-	text = "Введите причину Kill on Sight для %s:",
-	button1 = "Введите",
-	button2 = "Отмена",
-	timeout = 120,
-	hasEditBox = 1,
-	editBoxWidth = 260,	
-	whileDead = 1,
-	hideOnEscape = 1,
-	OnShow = function(self)
-		self.editBox:SetText("");
-	end,
-    OnAccept = function(self)
-		local reason = self.editBox:GetText()
-		Spy:SetKOSReason(self.playerName, "Введите собственную причину ...", reason)
-	end,
-};
-
 -- Class descriptions
 L["UNKNOWN"] = "Неизвестный"
 L["DRUID"] = "Друид"
@@ -500,6 +488,7 @@ L["Zandalari Troll"] = "Зандалар"
 L["Mechagnome"] = "Механогном"
 L["Vulpera"] = "Вульпера"
 L["Dracthyr"] = "Драктир"
+L["Earthen"] = "Земельник"
  
 -- Stealth abilities
 L["Stealth"] = "Незаметность"
