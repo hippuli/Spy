@@ -44,7 +44,7 @@ If enabled, this button will be located on the enemy players target frame. Click
 L["GeneralSettings"] = "General Settings"
 L["GeneralSettingsDescription"] = [[
 Options for when Spy is Enabled or Disabled.
-]]
+]] 
 L["EnableSpy"] = "Enable Spy"
 L["EnableSpyDescription"] = "Enables or disables Spy."
 L["EnabledInBattlegrounds"] = "Enable Spy in battlegrounds"
@@ -53,9 +53,7 @@ L["EnabledInArenas"] = "Enable Spy in arenas"
 L["EnabledInArenasDescription"] = "Enables or disables Spy when you are in an arena."
 L["EnabledInWintergrasp"] = "Enable Spy in world combat zones"
 L["EnabledInWintergraspDescription"] = "Enables or disables Spy when you are in world combat zones such as Lake Wintergrasp in Northrend."
-L["EnabledInSanctuaries"] = "Enable Spy in sanctuaries"
-L["EnabledInSanctuariesDescription"] = "Enables or disables Spy when you are in a sanctuary."
-L["DisableWhenPVPUnflagged"] = "Disable Spy when not flagged for PvP"
+L["DisableWhenPVPUnflagged"] = "Disable Spy when not flagged for PVP"
 L["DisableWhenPVPUnflaggedDescription"] = "Enables or disables Spy depending on your PVP status."
 L["DisabledInZones"] = "Disable Spy while in these locations"
 L["DisabledInZonesDescription"]	= "Select locations where Spy will be disabled"
@@ -64,10 +62,10 @@ L["Everlook"] = "Everlook"
 L["Gadgetzan"] = "Gadgetzan"
 L["Ratchet"] = "Ratchet"
 L["The Salty Sailor Tavern"] = "The Salty Sailor Tavern"
-L["Cenarion Hold"] = "Cenarion Hold"
 L["Shattrath City"] = "Shattrath City"
 L["Area 52"] = "Area 52"
 L["Dalaran"] = "Dalaran"
+L["Dalaran (Northrend)"] = "Dalaran (Northrend)"
 L["Bogpaddle"] = "Bogpaddle"
 L["The Vindicaar"] = "The Vindicaar"
 L["Krasus' Landing"] = "Krasus' Landing"
@@ -79,11 +77,6 @@ L["Hall of Ancient Paths"] = "Hall of Ancient Paths"
 L["Sanctum of the Sages"] = "Sanctum of the Sages"
 L["Rustbolt"] = "Rustbolt"
 L["Oribos"] = "Oribos"
-L["Valdrakken"] = "Valdrakken"
-L["The Roasted Ram"] = "The Roasted Ram"
-L["Dornogal"] = "Dornogal"
-L["Stonelight Rest"] = "Stonelight Rest"
-L["Delver's Headquarters"] = "Delver's Headquarters"
 
 -- Display
 L["DisplayOptions"] = "Display"
@@ -132,7 +125,6 @@ L["TooltipDisplayLastSeenDescription"] = "Set this to display the last known tim
 L["DisplayListData"] = "Select enemy data to display"
 L["Name"] = "Name"
 L["Class"] = "Class"
-L["Rank"] = "Rank"
 L["SelectFont"] = "Select a Font"
 L["SelectFontDescription"] = "Select a Font for the Spy Window."
 L["RowHeight"] = "Select the Row Height"
@@ -286,8 +278,6 @@ L["Ignore"] = "Ignore"
 L["IgnoreDescription"] = "Add/remove a player to/from the Ignore list."
 L["Test"] = "Test"
 L["TestDescription"] = "Shows a warning so it can be repositioned."
-L["Sanctuary"] = "Sanctuary"
-L["SanctuaryDescription"] = "Show/Hide Spy in a Sanctuary area."
 
 -- Lists
 L["Nearby"] = "Nearby"
@@ -310,10 +300,10 @@ L["HonorKills"] = "Honor Kills"
 L["PvPDeaths"] = "PvP Deaths"
 
 -- Output Messages
-L["VersionCheck"] = "|cffc41e3aWarning! The wrong version of Spy is installed. This version is for World of Warcraft Classic."
+L["VersionCheck"] = "|cffc41e3aWarning! The wrong version of Spy is installed. This version is for Burning Crusade Classic."
 L["SpyEnabled"] = "|cff9933ffSpy addon enabled."
 L["SpyDisabled"] = "|cff9933ffSpy addon disabled. Type |cffffffff/spy show|cff9933ff to enable."
-L["UpgradeAvailable"] = "|cff9933ffA new version of Spy is available. It can be downloaded from:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-classic"
+L["UpgradeAvailable"] = "|cff9933ffA new version of Spy is available. It can be downloaded from:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-tbc"
 L["AlertStealthTitle"] = "Stealth player detected!"
 L["AlertKOSTitle"] = "Kill On Sight player detected!"
 L["AlertKOSGuildTitle"] = "Kill On Sight player guild detected!"
@@ -365,7 +355,6 @@ L["Player"] = " (Player)"
 L["KOSReason"] = "Kill On Sight"
 L["KOSReasonIndent"] = "    "
 L["KOSReasonOther"] = "Enter your own reason..."
-L["EnterKOSReason"] = "Enter the Kill On Sight reason for %s"
 L["KOSReasonClear"] = "Clear Reason"
 L["StatsWins"] = "|cff40ff00Wins: "
 L["StatsSeparator"] = "  "
@@ -449,6 +438,25 @@ Spy_KOSReasonList = {
 	},
 }
 
+StaticPopupDialogs["Spy_SetKOSReasonOther"] = {
+	preferredIndex=STATICPOPUPS_NUMDIALOGS,  -- http://forums.wowace.com/showthread.php?p=320956
+	text = "Enter the Kill On Sight reason for %s:",
+	button1 = "Set",
+	button2 = "Cancel",
+	timeout = 120,
+	hasEditBox = 1,
+	editBoxWidth = 260,	
+	whileDead = 1,
+	hideOnEscape = 1,
+	OnShow = function(self)
+		self.editBox:SetText("");
+	end,
+    OnAccept = function(self)
+		local reason = self.editBox:GetText()
+		Spy:SetKOSReason(self.playerName, "Enter your own reason...", reason)
+	end,
+};
+
 -- Class descriptions
 L["UNKNOWN"] = "Unknown"
 L["DRUID"] = "Druid"
@@ -463,7 +471,6 @@ L["WARRIOR"] = "Warrior"
 L["DEATHKNIGHT"] = "Death Knight"
 L["MONK"] = "Monk"
 L["DEMONHUNTER"] = "Demon Hunter"
-L["EVOKER"] = "Evoker"
 
 -- Race descriptions
 L["Human"] = "Human"
@@ -489,8 +496,6 @@ L["Kul Tiran"] = "Kul Tiran"
 L["Zandalari Troll"] = "Zandalari Troll"
 L["Mechagnome"] = "Mechagnome"
 L["Vulpera"] = "Vulpera"
-L["Dracthyr"] = "Dracthyr"
-L["Earthen"] = "Earthen"
 
 -- Stealth abilities
 L["Stealth"] = "Stealth"
@@ -511,10 +516,15 @@ L["MinimapClassTextWARRIOR"] = "|cffc69b6d"
 L["MinimapClassTextDEATHKNIGHT"] = "|cffc41e3a"
 L["MinimapClassTextMONK"] = "|cff00ff96"
 L["MinimapClassTextDEMONHUNTER"] = "|cffa330c9"
-L["MinimapClassTextEVOKER"] = "|cff33937f"
 
 Spy_IgnoreList = {
-	["Mailbox"]=true, 
-	["Treasure Chest"]=true, 
-	["Small Treasure Chest"]=true,	
+	["Mailbox"]=true, ["Shred Master Mk1"]=true, ["Scrap-O-Matic 1000"]=true,
+	["Boat to Stormwind City"]=true, ["Boat to Boralus Harbor, Tiragarde Sound"]=true,
+	["Treasure Chest"]=true, ["Small Treasure Chest"]=true,	
+	["Akunda's Bite"]=true, ["Anchor Weed"]=true, ["Riverbud"]=true,    
+	["Sea Stalk"]=true, ["Siren's Pollen"]=true, ["Star Moss"]=true,   
+	["Winter's Kiss"]=true, ["War Headquarters (PvP)"]=true,
+	["Alliance Assassin"]=true, ["Horde Assassin"]=true,	
+	["Mystic Birdhat"]=true, ["Cousin Slowhands"]=true,	
+	["Azerite for the Alliance"]=true, ["Azerite for the Horde"]=true,
 };

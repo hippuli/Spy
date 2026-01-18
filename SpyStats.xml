@@ -19,17 +19,9 @@
         </Anchors>
         <Size x="33" y="15" />
     </FontString>
-    <FontString name="SpyStatsRankTemplate" inherits="SpyStatsStringTemplate" virtual="true">
-        <Anchors>
-            <Anchor point="LEFT" relativeTo="$parentLevel" relativePoint="RIGHT">
-                <Offset x="8" y="0" />
-            </Anchor>
-        </Anchors>
-        <Size x="33" y="15" />
-    </FontString>	
     <FontString name="SpyStatsClassTemplate" inherits="SpyStatsStringTemplate" virtual="true">
         <Anchors>
-            <Anchor point="LEFT" relativeTo="$parentRank" relativePoint="RIGHT">
+            <Anchor point="LEFT" relativeTo="$parentLevel" relativePoint="RIGHT">
                 <Offset x="8" y="0" />
             </Anchor>
         </Anchors>
@@ -99,7 +91,6 @@
                     <Layer level="OVERLAY">
                         <FontString name="$parentName" inherits="SpyStatsNameTemplate"></FontString>
                         <FontString name="$parentLevel" inherits="SpyStatsLevelTemplate"></FontString>
-                        <FontString name="$parentRank" inherits="SpyStatsRankTemplate"></FontString>						
                         <FontString name="$parentClass" inherits="SpyStatsClassTemplate"></FontString>
                         <FontString name="$parentGuild" inherits="SpyStatsGuildTemplate"></FontString>
                         <FontString name="$parentWins" inherits="SpyStatsWinsTemplate"></FontString>
@@ -157,17 +148,9 @@
         </Anchors>
         <Size x="33" y="15"></Size>
     </Button>
-    <Button name="SpyStatsPlayersRankSortTemplate" inherits="SpyStatsSortButtonTemplate" text="RANK" virtual="true">
-        <Anchors>
-            <Anchor point="LEFT" relativeTo="SpyStatsPlayersLevelSort" relativePoint="RIGHT">
-                <Offset x="6" y="0" />
-            </Anchor>
-        </Anchors>
-        <Size x="33" y="15"></Size>
-    </Button>	
     <Button name="SpyStatsPlayersClassSortTemplate" inherits="SpyStatsSortButtonTemplate" text="CLASS" virtual="true">
         <Anchors>
-            <Anchor point="LEFT" relativeTo="SpyStatsPlayersRankSort" relativePoint="RIGHT">
+            <Anchor point="LEFT" relativeTo="SpyStatsPlayersLevelSort" relativePoint="RIGHT">
                 <Offset x="8" y="0" />
             </Anchor>
         </Anchors>
@@ -333,7 +316,7 @@
             <Button name="$parentTopCloseButton" inherits="UIPanelCloseButton">
                 <Anchors>
                     <Anchor point="TOPRIGHT">
-                        <Offset x="-6" y="-8" />
+                        <Offset x="-6" y="-6" />
                     </Anchor>
                 </Anchors>
                 <Scripts>
@@ -364,7 +347,9 @@
 						</Anchors>
 						<Scripts>
 							<OnLoad>
-								PanelTemplates_TabResize(self, 0)
+<!--							PanelTemplates_TabResize(self, 0) -->
+								PanelTemplates_SetNumTabs(self, 0)
+								PanelTemplates_SetTab(self, 1)
 							</OnLoad>
 							<OnClick>
 								PanelTemplates_SetTab(self:GetParent(), 1)
@@ -401,7 +386,7 @@
                             </Anchor>
                             <Anchor point="BOTTOMRIGHT"></Anchor>
                         </Anchors>
-<!--                    <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+<!--					<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
                             <EdgeSize>
                                 <AbsValue val="16"></AbsValue>
                             </EdgeSize>
@@ -448,7 +433,6 @@
                                         <Frames>
                                             <Button name="SpyStatsPlayersNameSort" inherits="SpyStatsPlayersNameSortTemplate"/>
                                             <Button name="SpyStatsPlayersLevelSort" inherits="SpyStatsPlayersLevelSortTemplate"/>
-                                            <Button name="SpyStatsPlayersRankSort" inherits="SpyStatsPlayersRankSortTemplate"/>
                                             <Button name="SpyStatsPlayersClassSort" inherits="SpyStatsPlayersClassSortTemplate"/>
                                             <Button name="SpyStatsPlayersGuildSort" inherits="SpyStatsPlayersGuildSortTemplate"/>
                                             <Button name="SpyStatsPlayersWinsSort" inherits="SpyStatsPlayersWinsSortTemplate"/>
@@ -705,7 +689,8 @@
                 </Frames>
                 <Scripts>
 					<OnLoad>
-						PanelTemplates_SetNumTabs(self, 1) 
+<!--					PanelTemplates_SetNumTabs(self, 1) -->
+                        PanelTemplates_SetNumTabs(self, 0)
                         PanelTemplates_SetTab(self, 1)
                     </OnLoad>
                 </Scripts>

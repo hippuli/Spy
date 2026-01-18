@@ -53,21 +53,19 @@ L["EnabledInArenas"] = "Aktiviert Spy in Arenen"
 L["EnabledInArenasDescription"] = "Aktiviert oder deaktiviert Spy, wenn Sie in einer Arena sind."
 L["EnabledInWintergrasp"] = "Aktiviert Spy in Kampfgebieten der Welt"
 L["EnabledInWintergraspDescription"] = "Aktiviert oder deaktiviert Spy, wenn Sie in Kampfgebieten der Welt, wie z.B. Wintergrasp in Northrend, sind."
-L["EnabledInSanctuaries"] = "Aktiviert SPY in Schutzgebieten."
-L["EnabledInSanctuariesDescription"] = "Aktiviert oder deaktiviert Spy, wenn Sie in einer Schutzgebieten."
 L["DisableWhenPVPUnflagged"] = "Deaktiviert Spy, wenn PVP nicht eingeschaltet ist"
 L["DisableWhenPVPUnflaggedDescription"] = "Aktiviert oder deaktiviert Spy, abhängig von Ihrem PVP-Status."
 L["DisabledInZones"] = "Disable Spy while in these locations"
-L["DisabledInZonesDescription"]	= "Select locations where Spy will be disabled"
+L["DisabledInZonesDescription"]	= "Selecet locations where Spy will be disabled"
 L["Booty Bay"] = "Beutebucht"
 L["Everlook"] = "Ewige Warte"						
 L["Gadgetzan"] = "Gadgetzan"
 L["Ratchet"] = "Ratschet"
 L["The Salty Sailor Tavern"] = "Taverne \"Zum Salzigen Seemann\""
-L["Cenarion Hold"] = "Burg Cenarius"
 L["Shattrath City"] = "Shattrath"
 L["Area 52"] = "Area 52"
 L["Dalaran"] = "Dalaran"
+L["Dalaran (Northrend)"] = "Dalaran (Nordend)"
 L["Bogpaddle"] = "Kraulsumpf"
 L["The Vindicaar"] = "Die Vindikaar" 
 L["Krasus' Landing"] = "Krasus' Landeplatz"
@@ -79,11 +77,6 @@ L["Hall of Ancient Paths"] = "Halle der Uralten Pfade"
 L["Sanctum of the Sages"] = "Das Sanktum der Weisen"
 L["Rustbolt"] = "Rostbolzen"
 L["Oribos"] = "Oribos"
-L["Valdrakken"] = "Valdrakken"
-L["The Roasted Ram"] = "Gerösteten Geißbock"
-L["Dornogal"] = "Dornogal"
-L["Stonelight Rest"] = "Steinschattenrast"
-L["Delver's Headquarters"] = "Tiefenforscherhauptquartier"
 
 -- Display
 L["DisplayOptions"] = "Anzeigen"
@@ -132,7 +125,6 @@ L["TooltipDisplayLastSeenDescription"] = "Wählen Sie diese Einstellung, um die 
 L["DisplayListData"] = "Wählen Sie die anzuzeigenden feindlichen Daten aus"
 L["Name"] = "Name"
 L["Class"] = "Klasse"
-L["Rank"] = "Rang"
 L["SelectFont"] = "Wählen Sie eine Schriftart"
 L["SelectFontDescription"] = "Wählen Sie eine Schriftart für das Spy-Fenster."
 L["RowHeight"] = "Wählen Sie die Zeilenhöhe aus"
@@ -286,9 +278,7 @@ L["Ignore"] = "Ignorieren"
 L["IgnoreDescription"] = "Fügt hinzu/entfernt einen Spieler von der Zu Ignorieren-Liste."
 L["Test"] = "Testen"
 L["TestDescription"] = "Zeigt eine Warnung an, damit Sie sie neu positionieren können."
-L["Sanctuary"] = "Sanctuary"
-L["SanctuaryDescription"] = "Show/Hide Spy in a Sanctuary area."
-
+ 
 --Listen
 L["Nearby"] = "In der Nähe"
 L["LastHour"] = "Letzte Stunde"
@@ -307,13 +297,13 @@ L["Won/Lost"] = "Gewonnen/Verloren"
 L["KOS"] = "KOS"
 L["Reason"] = "Grund"	
 L["HonorKills"] = "Ehrenvolle Siege"
-L["PvPDeaths"] = "PvP Tode"
+L["PvPDeatchs"] = "PvP Tode"
 
 --Ausgabemeldungen
-L["VersionCheck"] = "|cffc41e3aWarnung! Die falsche Version von Spy ist installiert. Diese Version ist für World of Warcraft Classic."
+L["VersionCheck"] = "|cffc41e3aWarnung! Die falsche Version von Spy ist installiert. Diese Version ist für Burning Crusade Classic."
 L["SpyEnabled"] = "|cff9933ffSpy-Addon aktiviert."
 L["SpyDisabled"] = "|cff9933ffSpy-Addon deaktiviert. Tippen Sie |cffffffff/spy show|cff9933ff um es zu aktivieren."
-L["UpgradeAvailable"] = "|cff9933ffEine neue Version von Spy ist verfügbar. Es kann von: \n| cffffffffhttps://www.curseforge.com/wow/addons/spy-classic heruntergeladen werden."
+L["UpgradeAvailable"] = "|cff9933ffEine neue Version von Spy ist verfügbar. Es kann von: \n| cffffffffhttps://www.curseforge.com/wow/addons/spy-tbc heruntergeladen werden."
 L["AlertStealthTitle"] = "Getarnte Spieler erkannt!"
 L["AlertKOSTitle"] = "Sofort zu tötenden Spieler erkannt!"
 L["AlertKOSGuildTitle"] = "Gilde eines Sofort zu tötenden Spielers erkannt!"
@@ -365,7 +355,6 @@ L["Player"] = "(Spieler)"
 L["KOSReason"] = "Sofort zu töten"
 L["KOSReasonIndent"] = "    "
 L["KOSReasonOther"] = "Geben Sie Ihren eigenen Grund ein ..."
-L["EnterKOSReason"] = "Geben Sie den Grund für das Sofort zu töten %s ein"
 L["KOSReasonClear"] = "Löschen Grund"
 L["StatsWins"] = "|cff40ff00Gewinne:"
 L["StatsSeparator"] = ""
@@ -449,6 +438,25 @@ Spy_KOSReasonList = {
 	},
 }
  
+StaticPopupDialogs ["Spy_SetKOSReasonOther"] = {
+	PreferredIndex = STATICPOPUPS_NUMDIALOGS,--http://forums.wowace.com/showthread.php?p=320956
+	text = "Geben Sie den Grund für das Sofort zu töten %s ein",
+	button1 = "Einstellen",
+	button2 = "Abbrechen",
+	timeout = 20,
+	hasEditBox = 1,
+	editBoxWidth = 260,		
+	whileDead = 1,
+	hideOnEscape = 1,
+	OnShow = function(self)
+		self.editBox:SetText("");
+	end,
+	OnAccept = function(self)
+		local reason = Self.editBox:GetText()
+		Spy:SetKOSReason(self.playerName, "Geben Sie Ihren eigenen Grund ein ...", reason)
+	end,
+};
+
 -- Class descriptions
 L["UNKNOWN"] = "Unbekannt"
 L["DRUID"] = "Druide"
@@ -463,7 +471,6 @@ L["WARRIOR"] = "Krieger"
 L["DEATHKNIGHT"] = "Todesritter"
 L["MONK"] = "Mönch"
 L["DEMONHUNTER"] = "Dämonenjäger"
-L["EVOKER"] = "Rufer"
  
 -- Race descriptions
 L["Human"] = "Mensch"
@@ -489,8 +496,6 @@ L["Kul Tiran"] = "Kul Tiran"
 L["Zandalari Troll"] = "Zandalaritroll"
 L["Mechagnome"] = "Mechagnom"
 L["Vulpera"] = "Vulpera"
-L["Dracthyr"] = "Dracthyr"
-L["Earthen"] = "Irdener"
  
 -- Stealth Fähigkeiten
 L["Stealth"] = "Verstohlenheit"
@@ -511,10 +516,481 @@ L["MinimapClassTextWARRIOR"] = "|cffc69b6d"
 L["MinimapClassTextDEATHKNIGHT"] = "|cffc41e3a"
 L["MinimapClassTextMONK"] = "|cff00ff96"
 L["MinimapClassTextDEMONHUNTER"] = "|cffa330c9"
-L["MinimapClassTextEVOKER"] = "|cff33937f"
  
+				   
+															
+																
+														 
+						
+														   
+					  
+														   
+												 
+														   
+												 
+											  
+											 
+															
+														   
+												  
+												 
+												
+														 
+														 
+													
+												 
+												  
+														
+												 
+													 
+												   
+											   
+													  
+															   
+																 
+																
+													   
+												
+														
+													
+														
+													
+													  
+
+						
+														 
+										  
+											   
+												   
+													
+																 
+											  
+												
+															   
+												
+												  
+										   
+													
+												  
+												
+												   
+													
+											
+												 
+												   
+												
+												   
+												 
+														
+												  
+													 
+												 
+														  
+											
+																
+											 
+												   
+												  
+												
+														   
+												 
+														  
+					  
+													  
+													
+													  
+														 
+															  
+						 
+												   
+														   
+												  
+														   
+													   
+													
+													 
+													  
+															 
+														 
+												  
+													  
+													 
+														  
+														
+														  
+												   
+													  
+												 
+														   
+														   
+													   
+												 
+													  
+														 
+														   
+												
+													  
+													
+													 
+															  
+													
+															 
+												  
+															
+												  
+												   
+														   
+												   
+												  
+														 
+														 
+											 
+														  
+														   
+														   
+					   
+														
+													
+													
+														
+												   
+														  
+																
+					   
+											  
+												  
+											   
+														 
+												
+														
+													 
+												
+											   
+													  
+													 
+												  
+															 
+											  
+											  
+												  
+													   
+												
+															  
+															  
+															  
+															  
+													   
+											   
+												 
+												 
+															 
+												 
+															  
+																  
+													   
+																 
+													   
+													   
+													   
+													   
+															  
+													   
+														   
+													 
+															 
+													  
+												 
+												 
+					 
+													
+												
+												
+											  
+													  
+												  
+												 
+												 
+						  
+													  
+																	
+												   
+														  
+															   
+																
+												
+													  
+												  
+															   
+												   
+												   
+													   
+																 
+														  
+														  
+															   
+														  
+													 
+															
+														 
+																 
+															   
+														 
+													  
+															   
+						
+											  
+														   
+														 
+														
+														
+											  
+						 
+													  
+													  
+															
+												 
+														   
+															   
+													  
+													
+													   
+																
+													 
+														  
+											  
+													
+															 
+													
+													 
+													
+													  
+															 
+													  
+													  
+													 
+												 
+														 
+														 
+														  
+												  
+													  
+					   
+													
+													 
+														
+											  
+														  
+													   
+						
+											   
+													 
+													 
+													
+											  
+													  
+												 
+											   
+											   
+												   
+											   
+											
+														  
+												 
+											
+												 
+											
+											  
+														   
+															
+											   
+												   
+													   
+															   
+												   
+														 
+												 
+													  
+											   
+											  
+													  
+													  
+					  
+														  
+											  
+													
+													  
+												
+												   
+													  
+													
+						 
+														
+												  
+															 
+												
+														  
+														   
+														
+														   
+													 
+															  
+															 
+															
+													   
+														   
+												
+															
+												   
+															 
+												   
+																   
+																 
+															   
+																  
+												 
+																  
+															
+																  
+															  
+														 
+														
+																  
+													 
+														   
+														 
+														   
+														 
+														   
+																	 
+													 
+																	
+																	
+					   
+												
+															 
+														  
+												   
+						  
+													
+												  
+													 
+														   
+												  
+														   
+												
+													  
+											  
+																			  
+												   
+																
+													
+																
+												   
+														 
+														  
+																		 
+														 
+												   
+																
+															 
+																			 
+														 
+													   
+														 
+														   
+																		 
+												  
+																	   
+													   
+													 
+																  
+																		
+														   
+															 
+																	
+															  
+															   
+																 
+														 
+																
+															   
+													
+														   
+																			
+																	  
+													
+																	   
+																		
+												
+																	   
+																		  
+																				
+															 
+															  
+																   
+																		   
+																		   
+						
+														  
+															
+													  
+															   
+															 
+													 
+													 
+													 
+														 
+						  
+													
+														  
+															   
+													
+												 
+												   
+												 
+												   
+															 
+															
+											  
+													   
+												   
+															
+											  
+															
+													
+												   
+												
+													
+												
+												   
+															
+												   
+														 
+												 
+													  
+													 
+												   
+												   
+													  
+						
+														
+															   
+															   
+													
+															  
+												  
+														 
+													 
+  
+
 Spy_IgnoreList = {
-	["Briefkasten"]=true, 
-	["Schatztruhe"]=true,
-	["Kleine Schatztruhe"]=true,
+	["Briefkasten"]=true, ["Schreddermeister Mk1"]=true, ["Schrott-o-matik 1000"]=true,
+	["Boat to Stormwind City"]=true, ["Boat to Boralus Harbor, Tiragarde Sound"]=true,
+	["Schatztruhe"]=true, ["Kleine Schatztruhe"]=true,
+	["Akundas Biss"]=true, ["Ankerkraut"]=true, ["Flussknospe"]=true,    
+	["Meeresstängel"]=true, ["Sirenenpollen"]=true, ["Sternmoos"]=true,   
+	["Winterkuss"]=true, ["War Headquarters (PvP)"]=true,
+	["Allianzattentäter"]=true, ["Hordeattentäter"]=true,	
+	["Mystiker Vogelhut"]=true, ["Cousin Träghand"]=true,
+	["Azerit für die Allianz"]=true, ["Azerit für die Horde"]=true,	
 };

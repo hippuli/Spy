@@ -53,8 +53,6 @@ L["EnabledInArenas"] = "競技場中啟用"
 L["EnabledInArenasDescription"] = "身處在競技場中時啟用或停用 Spy。"
 L["EnabledInWintergrasp"] = "世界戰鬥區域中啟用"
 L["EnabledInWintergraspDescription"] = "身處在世界戰鬥區中時啟用或停用 Spy，例如北裂境的冬握湖。"
-L["EnabledInSanctuaries"] = "Enable Spy in Sanctuaries."
-L["EnabledInSanctuariesDescription"] = "Enables or disables Spy when you are in a Sanctuary."
 L["DisableWhenPVPUnflagged"] = "非 PVP 狀態時停用"
 L["DisableWhenPVPUnflaggedDescription"] = "依據自身的 PVP 狀態啟用或停用 Spy。"
 L["DisabledInZones"] = "在這些位置時禁用Spy"
@@ -64,10 +62,10 @@ L["Everlook"] = "永望镇"
 L["Gadgetzan"] = "加基森"
 L["Ratchet"] = "棘齿城"
 L["The Salty Sailor Tavern"] = "水手之家旅店"
-L["Cenarion Hold"] = "塞納里奧城堡"
 L["Shattrath City"] = "撒塔斯城"
 L["Area 52"] = "52區"
 L["Dalaran"] = "達拉然"
+L["Dalaran (Northrend)"] = "達拉然(北裂境)"
 L["Bogpaddle"] = "沼槳"
 L["The Vindicaar"] = "维迪卡尔"
 L["Krasus' Landing"] = "卡薩斯平臺"
@@ -79,11 +77,6 @@ L["Hall of Ancient Paths"] = "远古通路大厅"
 L["Sanctum of the Sages"] = "賢者聖所"
 L["Rustbolt"] = "锈栓镇"
 L["Oribos"] = "奥利波斯"
-L["Valdrakken"] = "瓦德拉肯"
-L["The Roasted Ram"] = "到脆烤山羊"
-L["Dornogal"] = "多恩诺嘉尔"
-L["Stonelight Rest"] = "石光休憩"
-L["Delver's Headquarters"] = "探究者總部"
 
 -- Display
 L["DisplayOptions"] = "顯示"
@@ -132,7 +125,6 @@ L["TooltipDisplayLastSeenDescription"] = "在玩家的滑鼠提示中顯示最�
 L["DisplayListData"] = "選擇要顯示的敵人數據"
 L["Name"] = "名稱"
 L["Class"] = "职业"
-L["Rank"] = "會階"
 L["SelectFont"] = "選擇字體"
 L["SelectFontDescription"] = "選擇 Spy 視窗使用的字體。"
 L["RowHeight"] = "選擇列高"
@@ -286,8 +278,6 @@ L["Ignore"] = "忽略"
 L["IgnoreDescription"] = "從忽略清單加入/移除玩家。"
 L["Test"] = "Test"
 L["TestDescription"] = "顯示警告，以便您可以重新放置它。"
-L["Sanctuary"] = "Sanctuary"
-L["SanctuaryDescription"] = "Show/Hide Spy in a Sanctuary area."
 
 -- Lists
 L["Nearby"] = "附近"
@@ -302,7 +292,7 @@ L["Time"] = "時間"
 L["List"] = "清單"
 L["Filter"] = "過濾"	
 L["Show Only"] = "只顯示"
-L["Realm"] = "伺服器"
+L["Realm"] = "Realm"
 L["KOS"] = "即殺"
 L["Won/Lost"] = "勝/敗"
 L["Reason"] = "原因"	  
@@ -310,10 +300,10 @@ L["HonorKills"] = "榮譽擊殺"
 L["PvPDeaths"] = "PvP 死亡"
 
 -- Output messages
-L["VersionCheck"] = "|cffc41e3a警告！ 安裝了錯誤的Spy版本。 此版本適用於 World of Warcraft Classic。"
+L["VersionCheck"] = "|cffc41e3a警告！ 安裝了錯誤的Spy版本。 此版本適用於 Burning Crusade Classic。"
 L["SpyEnabled"] = "|cff9933ff偵測敵方玩家插件已啟用。"
 L["SpyDisabled"] = "|cff9933ff偵測敵方玩家插件已停用，輸入 |cffffffff/spy show|cff9933ff 來啟用。"
-L["UpgradeAvailable"] = "|cff9933ff偵測敵方玩家插件已有新版本，可以到這裡下載：\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-classic"
+L["UpgradeAvailable"] = "|cff9933ff偵測敵方玩家插件已有新版本，可以到這裡下載：\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-tbc"
 L["AlertStealthTitle"] = "偵測到隱形玩家!"
 L["AlertKOSTitle"] = "偵測到即殺玩家!"
 L["AlertKOSGuildTitle"] = "偵測到公會即殺玩家!"
@@ -365,7 +355,6 @@ L["Player"] = " (玩家)"
 L["KOSReason"] = "即殺"
 L["KOSReasonIndent"] = "    "
 L["KOSReasonOther"] = "自行輸入原因..."
-L["EnterKOSReason"] = "輸入 %s 的即殺原因"
 L["KOSReasonClear"] = "明確原因"
 L["StatsWins"] = "|cff40ff00勝："
 L["StatsSeparator"] = "  "
@@ -449,6 +438,25 @@ Spy_KOSReasonList = {
 	},
 }
 
+StaticPopupDialogs["Spy_SetKOSReasonOther"] = {
+	preferredIndex=STATICPOPUPS_NUMDIALOGS,  -- http://forums.wowace.com/showthread.php?p=320956
+	text = "輸入 %s 的即殺原因:",
+	button1 = "設定",
+	button2 = "取消",
+	timeout = 20,
+	hasEditBox = 1,
+	editBoxWidth = 260,		
+	whileDead = 1,
+	hideOnEscape = 1,
+	OnShow = function(self)
+		self.editBox:SetText("");
+	end,
+	OnAccept = function(self)
+		local reason = self.editBox:GetText()
+		Spy:SetKOSReason(self.playerName, "自行輸入原因...", reason)
+	end,
+};
+
 -- Class descriptions
 L["UNKNOWN"] = "未知"
 L["DRUID"] = "德魯伊"
@@ -463,7 +471,6 @@ L["WARRIOR"] = "戰士"
 L["DEATHKNIGHT"] = "死亡騎士"
 L["MONK"] = "武僧"
 L["DEMONHUNTER"] = "惡魔獵人"
-L["EVOKER"] = "唤魔师"
 
 -- Race descriptions
 L["Human"] = "人类"
@@ -489,8 +496,6 @@ L["Kul Tiran"] = "库尔提拉斯人"
 L["Zandalari Troll"] = "赞达拉巨魔"
 L["Mechagnome"] = "机械侏儒"
 L["Vulpera"] = "狐人"
-L["Dracthyr"] = "龙希尔"
-L["Earthen"] = "土灵"
 
 -- Stealth abilities
 L["Stealth"] = "潜行"
@@ -511,10 +516,481 @@ L["MinimapClassTextWARRIOR"] = "|cffc69b6d"
 L["MinimapClassTextDEATHKNIGHT"] = "|cffc41e3a"
 L["MinimapClassTextMONK"] = "|cff00ff96"
 L["MinimapClassTextDEMONHUNTER"] = "|cffa330c9"
-L["MinimapClassTextEVOKER"] = "|cff33937f"
+
+				   
+														   
+														 
+															
+														   
+
+					  
+											   
+											   
+														   
+												 
+										   
+										 
+													   
+												 
+												 
+										   
+										   
+											
+											  
+											
+													
+												  
+												 
+												 
+											
+											
+										   
+											   
+												 
+													   
+												 
+												  
+										 
+													 
+												 
+												  
+												 
+													 
+
+						
+												  
+											
+											   
+												  
+												
+												   
+											 
+											 
+															
+											 
+											 
+											 
+												   
+											 
+												   
+											 
+												   
+											 
+											 
+											 
+											 
+												
+											 
+												   
+											 
+												   
+												   
+												
+											 
+												   
+											 
+												   
+												   
+											 
+												   
+											 
+												   
+					  
+												   
+												   
+											 
+												   
+															   
+						 
+												   
+												   
+												   
+												   
+												   
+												   
+												   
+												   
+												   
+													
+													
+													
+													
+													
+													
+													
+													
+											  
+												 
+													
+													
+													
+													
+													
+													
+													
+											  
+													
+													
+													
+														  
+													
+														  
+													
+													
+											  
+												 
+													
+													
+													
+													
+													
+											  
+													
+													
+													
+					   
+													
+											  
+											  
+											  
+													
+													
+													
+					   
+											  
+											  
+											  
+											  
+												 
+											  
+												 
+											  
+												  
+											   
+												  
+												  
+														
+											   
+											   
+											
+														
+												  
+														
+														   
+														
+														
+														
+											
+												  
+											   
+														
+											   
+														   
+														
+											   
+														
+														   
+															  
+														   
+														   
+														   
+															  
+														   
+												  
+														   
+														
+											   
+											   
+					 
+												  
+											   
+											   
+												  
+												  
+												  
+											
+												  
+						  
+												 
+													
+											  
+												 
+													   
+													
+												 
+												  
+											   
+													 
+												  
+													 
+													 
+													 
+													 
+													 
+													 
+													 
+												  
+													 
+													 
+													 
+												  
+													 
+													 
+													 
+						
+											   
+													 
+												  
+													 
+													 
+											   
+						 
+													  
+											 
+													  
+												
+													
+													
+													
+												 
+													
+													
+													
+													
+												 
+													
+													
+														  
+											  
+													
+													
+													
+													
+													
+													
+													
+													
+													
+													
+												 
+													   
+					   
+													
+													
+													
+											  
+													
+													
+						
+											
+											
+												  
+											
+											
+											
+											
+											
+											 
+											 
+											 
+											 
+											 
+											 
+											 
+											 
+											 
+											 
+												   
+												   
+											 
+											 
+												   
+												   
+											 
+												   
+											 
+												   
+												   
+											 
+												
+												   
+					  
+												   
+											 
+												   
+											 
+											 
+												   
+											 
+											 
+						 
+												
+												
+												   
+												
+												   
+												   
+												   
+												   
+													
+													
+													
+														  
+													
+														  
+												 
+													
+													
+													
+													
+														  
+													   
+													
+													
+												 
+													
+														  
+													
+													
+													
+													
+														  
+											  
+													
+												 
+													
+													
+													
+													
+												 
+														  
+														  
+					   
+											  
+													
+														  
+													
+						  
+													
+											  
+												 
+													
+												 
+													
+													
+													
+												 
+															  
+													 
+														   
+													 
+													 
+													 
+												  
+													 
+															  
+												  
+													 
+													 
+													 
+															  
+														   
+													 
+													 
+													 
+														   
+												  
+															  
+													 
+													 
+														   
+															  
+													 
+														   
+														
+														
+														
+													 
+													 
+														   
+														
+													 
+													 
+															  
+															  
+													 
+															  
+														   
+												  
+															  
+															  
+															  
+													 
+													 
+														   
+															  
+															  
+						
+													 
+													 
+													 
+													 
+													 
+													 
+											   
+													 
+													 
+						  
+													
+													
+													
+											  
+											  
+													
+											  
+													 
+													 
+													 
+											   
+											   
+											   
+													 
+											   
+													 
+													 
+											   
+												  
+													 
+													 
+											   
+													 
+											   
+													 
+											   
+											   
+													 
+												  
+											   
+											   
+						
+													 
+													 
+													 
+													 
+													 
+											   
+													 
+													 
+  
 
 Spy_IgnoreList = {
-	["邮箱"]=true, 
-	["Treasure Chest"]=true,
-	["Small Treasure Chest"]=true,
+	["邮箱"]=true, ["Shred Master Mk1"]=true, ["Scrap-O-Matic 1000"]=true,
+	["前往暴风城的船"]=true, ["前往伯拉勒斯港（提拉加德海峡）的船"]=true,
+	["Treasure Chest"]=true, ["Small Treasure Chest"]=true,
+	["阿昆达之噬"]=true, ["锚草"]=true, ["流波花苞"]=true,    
+	["海潮茎杆"]=true, ["海妖花粉"]=true, ["星光苔"]=true,   
+	["凛冬之吻"]=true, ["战争指挥部（PvP）"]=true,
+	["联盟刺客"]=true, ["部落刺客"]=true,
+	["秘法师鸟羽帽"]=true, ["表弟慢热手"]=true,	
+	["联盟的艾泽里特"]=true, ["部落的艾泽里特"]=true,	
 };

@@ -53,21 +53,19 @@ L["EnabledInArenas"] = "아레나에 있을 때 Spy 활성화"
 L["EnabledInArenasDescription"] = "아레나에 있을 때 Spy를 활성화 또는 비활성화 합니다."
 L["EnabledInWintergrasp"] = "대규모 전장일 때 Spy 활성화"
 L["EnabledInWintergraspDescription"] = "겨울손아귀 호수와 같은 대규모 전장일 경우 Spy를 활성화 또는 비활성화 합니다."
-L["EnabledInSanctuaries"] = "Enable Spy in Sanctuaries."
-L["EnabledInSanctuariesDescription"] = "Enables or disables Spy when you are in a Sanctuary."
 L["DisableWhenPVPUnflagged"] = "PVP 상태가 아닐 때 Spy 비활성화"
 L["DisableWhenPVPUnflaggedDescription"] = "PVP 상태일 경우 Spy를 활성화 또는 비활성화 합니다."
 L["DisabledInZones"] = "Disable Spy while in these locations"
-L["DisabledInZonesDescription"]	= "Select locations where Spy will be disabled"
+L["DisabledInZonesDescription"]	= "Selecet locations where Spy will be disabled"
 L["Booty Bay"] = "무법항"
 L["Everlook"] = "눈망루 마을"						
 L["Gadgetzan"] = "가젯잔"
 L["Ratchet"] = "톱니항"
 L["The Salty Sailor Tavern"] = "뱃사공의 선술집"
-L["Cenarion Hold"] = "세나리온 요새"
 L["Shattrath City"] = "샤트라스"
 L["Area 52"] = "52번 구역"
 L["Dalaran"] = "달라란"
+L["Dalaran (Northrend)"] = "달라란 (노스렌드)"
 L["Bogpaddle"] = "수렁진흙탕"
 L["The Vindicaar"] = "구원호"
 L["Krasus' Landing"] = "크라서스 착륙장"
@@ -79,11 +77,6 @@ L["Hall of Ancient Paths"] = "고대 길의 전당"
 L["Sanctum of the Sages"] = "현자의 성소"
 L["Rustbolt"] = "녹슨나사"
 L["Oribos"] = "오리보스"
-L["Valdrakken"] = "발드라켄"
-L["The Roasted Ram"] = "양꼬치 주점"
-L["Dornogal"] = "도르노갈"
-L["Stonelight Rest"] = "돌빛 쉼터"
-L["Delver's Headquarters"] = "구렁 탐험가 본부"
 
 -- Display
 L["DisplayOptions"] = "디스플레이"
@@ -132,7 +125,6 @@ L["TooltipDisplayLastSeenDescription"] = "적 플레이어 툴팁에 마지막�
 L["DisplayListData"] = "표시 할 적의 데이터를 선택하십시오"
 L["Name"] = "이름"
 L["Class"] = "직업"
-L["Rank"] = "등급"
 L["SelectFont"] = "폰트 설정"
 L["SelectFontDescription"] = "Spy 창의 폰트를 선택하세요."
 L["RowHeight"] = "열 높이 설정"
@@ -286,8 +278,6 @@ L["Ignore"] = "제외"
 L["IgnoreDescription"] = "적 플레이어를 제외 목록에 추가/제거 합니다."
 L["Test"] = "Test"
 L["TestDescription"] = "위치를 조정할 수 있도록 경고를 표시합니다."
-L["Sanctuary"] = "Sanctuary"
-L["SanctuaryDescription"] = "Show/Hide Spy in a Sanctuary area."
 
 -- Lists
 L["Nearby"] = "근접한 적"
@@ -302,7 +292,7 @@ L["Time"] = "시간"
 L["List"] = "표식"
 L["Filter"] = "검색"
 L["Show Only"] = "필터"
-L["Realm"] = "서버"
+L["Realm"] = "Realm"
 L["KOS"] = "살생부"
 L["Won/Lost"] = "승/패"
 L["Reason"] = "이유"	 
@@ -310,10 +300,10 @@ L["HonorKills"] = "명예 킬"
 L["PvPDeaths"] = "PvP 죽음"
 
 -- Output Messages
-L["VersionCheck"] = "|cffc41e3a경고! 잘못된 Spy 버전이 설치되었습니다. 이 버전은 World of Warcraft Classic 용입니다."
+L["VersionCheck"] = "|cffc41e3a경고! 잘못된 Spy 버전이 설치되었습니다. 이 버전은 Burning Crusade Classic 용입니다."
 L["SpyEnabled"] = "|cff9933ffSpy 애드온이 활성화되었습니다.."
 L["SpyDisabled"] = "|cff9933ffSpy 애드온이 비활성화되었습니다. |cffffffff/spy show|cff9933ff 을 입력해 활성화 시키십시오."
-L["UpgradeAvailable"] = "|cff9933ffA Spy의 새로운 버전을 사용할 수 있습니다. 다운로드 주소:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-classic"
+L["UpgradeAvailable"] = "|cff9933ffA Spy의 새로운 버전을 사용할 수 있습니다. 다운로드 주소:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-tbc"
 L["AlertStealthTitle"] = "은신한 적이 탐지되었습니다!"
 L["AlertKOSTitle"] = "살생부 명단의 적이 탐지되었습니다!"
 L["AlertKOSGuildTitle"] = "살생부 명단의 적 길드가 탐지되었습니다!"
@@ -354,7 +344,7 @@ L["AddToIgnoreList"] = "제외 목록에 추가"
 L["AddToKOSList"] = "살생부 명단에 추가"
 L["RemoveFromIgnoreList"] = "제외 목록에서 삭제"
 L["RemoveFromKOSList"] = "살생부 명단에서 삭제"
-L["RemoveFromStatsList"] = "목록에서 삭제"
+L["RemoveFromStatsList"] = "목록에서 삭제"   --++
 L["AnnounceDropDownMenu"] = "알림"
 L["KOSReasonDropDownMenu"] = "살생부 이유 설정"
 L["PartyDropDownMenu"] = "파티"
@@ -365,7 +355,6 @@ L["Player"] = " (플레이어)"
 L["KOSReason"] = "살생부"
 L["KOSReasonIndent"] = "    "
 L["KOSReasonOther"] = "이유를 입력하세요..."
-L["EnterKOSReason"] = "%s 의 살생부 이유 작성"
 L["KOSReasonClear"] = "이유 지우기"
 L["StatsWins"] = "|cff40ff00승: "
 L["StatsSeparator"] = "  "
@@ -449,6 +438,25 @@ Spy_KOSReasonList = {
 	},
 }
 
+StaticPopupDialogs["Spy_SetKOSReasonOther"] = {
+	preferredIndex=STATICPOPUPS_NUMDIALOGS,  -- http://forums.wowace.com/showthread.php?p=320956
+	text = "%s 의 살생부 이유 작성",
+	button1 = "설정",
+	button2 = "취소",
+	timeout = 120,
+	hasEditBox = 1,
+	editBoxWidth = 260,	
+	whileDead = 1,
+	hideOnEscape = 1,
+	OnShow = function(self)
+		self.editBox:SetText("");
+	end,
+    OnAccept = function(self)
+		local reason = self.editBox:GetText()
+		Spy:SetKOSReason(self.playerName, "이유를 입력하세요...", reason)
+	end,
+};
+
 -- Class descriptions
 L["UNKNOWN"] = "미확인"
 L["DRUID"] = "드루이드"
@@ -463,7 +471,6 @@ L["WARRIOR"] = "전사"
 L["DEATHKNIGHT"] = "죽음의 기사"
 L["MONK"] = "수도사"
 L["DEMONHUNTER"] = "악마사냥꾼"
-L["EVOKER"] = "기원사"
 
 -- Race descriptions
 L["Human"] = "인간"
@@ -489,8 +496,6 @@ L["Kul Tiran"] = "쿨 티란"
 L["Zandalari Troll"] = "잔달라 트롤"
 L["Mechagnome"] = "기계노움"
 L["Vulpera"] = "불페라"
-L["Dracthyr"] = "드랙티르"
-L["Earthen"] = "토석인"
 
 -- Stealth abilities
 L["Stealth"] = "은신"
@@ -511,7 +516,472 @@ L["MinimapClassTextWARRIOR"] = "|cffc69b6d"
 L["MinimapClassTextDEATHKNIGHT"] = "|cffc41e3a"
 L["MinimapClassTextMONK"] = "|cff00ff96"
 L["MinimapClassTextDEMONHUNTER"] = "|cffa330c9"
-L["MinimapClassTextEVOKER"] = "|cff33937f"
+
+				   
+														   
+														 
+															
+														   
+
+					  
+														 
+												
+															
+										   
+											  
+											
+														
+													 
+														
+											  
+											  
+											   
+													 
+											
+														   
+														 
+															
+												  
+													  
+												  
+										   
+											   
+														
+														
+														
+												   
+										 
+														 
+													 
+													  
+													 
+														 
+
+						
+													  
+											
+												   
+													  
+												 
+													   
+											 
+												   
+															   
+											 
+											 
+											 
+														  
+													  
+													   
+												
+													
+												
+											 
+											 
+												   
+													
+													
+													   
+													
+													
+												
+												 
+											 
+													   
+												   
+													
+													   
+													  
+														  
+											 
+														   
+					  
+														  
+													   
+												 
+													   
+																
+						 
+													   
+													
+													   
+													
+													   
+													
+													   
+														  
+												
+												  
+														
+														   
+													
+														   
+														   
+													 
+													 
+													 
+														
+													 
+														
+													 
+														   
+													 
+														
+													 
+											  
+													 
+													 
+													 
+													 
+											  
+													 
+													 
+													 
+													   
+											  
+													 
+													 
+														
+															
+													 
+													 
+													 
+													 
+														
+					   
+													 
+													 
+											  
+											  
+													 
+														
+													 
+					   
+											  
+												  
+												  
+												  
+												  
+												  
+													 
+										   
+													  
+													  
+												   
+											   
+														  
+											
+											   
+											
+													  
+													  
+																   
+																
+																
+																
+													  
+												  
+												   
+												   
+														  
+												   
+																   
+																	
+													  
+														  
+																	
+																 
+																 
+																 
+															 
+																	
+																	 
+														 
+														  
+												 
+											
+											
+					 
+													  
+													  
+												   
+												   
+											
+															 
+											
+													  
+						  
+														
+														
+											  
+													 
+														   
+														
+											  
+													  
+											   
+														 
+												  
+													  
+														 
+														 
+														 
+														 
+															
+													  
+															
+														 
+													  
+													  
+											   
+														 
+													  
+													  
+						
+												  
+														 
+													  
+														 
+													  
+											   
+						 
+													
+														  
+															   
+											 
+														
+														
+													 
+											  
+												 
+														
+														
+														
+											  
+														
+														
+														
+												 
+													 
+														
+											  
+														
+														
+													 
+													 
+													 
+														
+													 
+													 
+													 
+					   
+														
+														   
+														
+											  
+											  
+														
+						
+											
+													  
+													  
+											
+											
+											   
+												  
+											
+													  
+												
+													
+												
+													
+												   
+											 
+											 
+												 
+											 
+														
+														
+											 
+											 
+													
+														
+													   
+													
+													
+											 
+														
+											 
+													
+											 
+					  
+													   
+											 
+													   
+											 
+												   
+												   
+															 
+												   
+						 
+													   
+													
+													   
+													
+													   
+													   
+													   
+													   
+													 
+														
+														
+														
+														
+															   
+											  
+														
+													 
+														
+													 
+														
+															   
+														 
+															
+												 
+													 
+														
+															
+														
+														
+														   
+															
+											  
+														
+													 
+														
+														
+														   
+															
+													 
+														
+														
+					   
+													 
+														   
+															
+														
+						  
+														
+											  
+														
+													 
+											  
+														
+														
+														
+											  
+																	 
+													  
+															   
+														 
+															
+														 
+														 
+														 
+																	 
+														 
+												   
+													  
+															
+																  
+														 
+													  
+													  
+														 
+																
+											   
+																  
+													  
+														 
+															   
+																  
+														 
+														 
+																  
+																  
+														 
+														 
+															   
+														 
+														 
+														 
+														 
+																  
+																  
+														 
+																  
+																
+												  
+																  
+																	 
+																	 
+														 
+														 
+														 
+																	 
+																	 
+						
+													  
+													  
+														 
+														 
+													  
+														 
+											   
+														 
+														 
+						  
+													 
+														
+															
+											  
+											  
+													
+												 
+													  
+													  
+															
+											   
+											   
+													  
+														 
+											   
+														 
+													  
+													  
+													 
+											   
+														 
+														 
+														 
+													  
+													  
+											   
+											   
+															
+													 
+													  
+														 
+						
+														 
+															
+														 
+														 
+														 
+													  
+														 
+															
+  
 
 Spy_IgnoreList = {
 	["우체통"]=true, 

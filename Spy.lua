@@ -7,12 +7,12 @@ local fonts = SM:List("font")
 local _
 
 Spy = LibStub("AceAddon-3.0"):NewAddon("Spy", "AceConsole-3.0", "AceEvent-3.0", "AceComm-3.0", "AceTimer-3.0")
-Spy.Version = "1.3.6"
+Spy.Version = "2.0.8"
 Spy.DatabaseVersion = "1.1"
 Spy.Signature = "[Spy]"
 Spy.ButtonLimit = 15
 Spy.MaximumPlayerLevel = MAX_PLAYER_LEVEL_TABLE[GetExpansionLevel()]
-
+--Spy.MaximumPlayerLevel = GetMaxLevelForLatestExpansion()
 Spy.MapNoteLimit = 20
 Spy.MapProximityThreshold = 0.02
 Spy.CurrentMapNote = 1
@@ -101,7 +101,7 @@ Spy.options = {
 						Spy:ZoneChangedEvent()
 					end,
 				},
---[[				EnabledInArenas = {
+				EnabledInArenas = {
 					name = L["EnabledInArenas"],
 					desc = L["EnabledInArenasDescription"],
 					type = "toggle",
@@ -115,7 +115,7 @@ Spy.options = {
 						Spy:ZoneChangedEvent()
 					end,
 				},
-				EnabledInWintergrasp = {
+--[[				EnabledInWintergrasp = {
 					name = L["EnabledInWintergrasp"],
 					desc = L["EnabledInWintergraspDescription"],
 					type = "toggle",
@@ -128,26 +128,12 @@ Spy.options = {
 						Spy.db.profile.EnabledInWintergrasp = value
 						Spy:ZoneChangedEvent()
 					end,
-				}, 
-				EnabledInSanctuaries = {
-					name = L["EnabledInSanctuaries"],
-					desc = L["EnabledInSanctuariesDescription"],
-					type = "toggle",
-					order = 5,
-					width = "full",
-					get = function(info)
-						return Spy.db.profile.EnabledInSanctuaries
-					end,
-					set = function(info, value)
-						Spy.db.profile.EnabledInSanctuaries = value
-						Spy:ZoneChangedEvent()
-					end,
-				}, ]]--
+				},]]--
 				DisableWhenPVPUnflagged = {
 					name = L["DisableWhenPVPUnflagged"],
 					desc = L["DisableWhenPVPUnflaggedDescription"],
 					type = "toggle",
-					order = 6,
+					order = 5,
 					width = "full",
 					get = function(info)
 						return Spy.db.profile.DisableWhenPVPUnflagged
@@ -161,7 +147,7 @@ Spy.options = {
 					name = L["DisabledInZones"],
 					desc = L["DisabledInZonesDescription"],
 					type = "multiselect",
-					order = 7,
+					order = 6,
 					get = function(info, key) 
 						return Spy.db.profile.FilteredZones[key] 
 					end,
@@ -174,32 +160,24 @@ Spy.options = {
 						["Gadgetzan"] = L["Gadgetzan"],
 						["Ratchet"] = L["Ratchet"],
 						["The Salty Sailor Tavern"] = L["The Salty Sailor Tavern"],
-						["Cenarion Hold"] = L["Cenarion Hold"],
---						["Shattrath City"] = L["Shattrath City"],
---						["Area 52"] = L["Area 52"],
+						["Shattrath City"] = L["Shattrath City"],
+						["Area 52"] = L["Area 52"],
 --						["Dalaran"] = L["Dalaran"],
+--						["Dalaran (Northrend)"] = L["Dalaran (Northrend)"],
 --						["Bogpaddle"] = L["Bogpaddle"],
 --						["The Vindicaar"] = L["The Vindicaar"],
 --						["Krasus' Landing"] = L["Krasus' Landing"],
 --						["The Violet Gate"] = L["The Violet Gate"],
 --						["Magni's Encampment"] = L["Magni's Encampment"],
---						["Chamber of Heart"] = L["Chamber of Heart"],
---						["Hall of Ancient Paths"] = L["Hall of Ancient Paths"],
---						["Sanctum of the Sages"] = L["Sanctum of the Sages"],
 --						["Rustbolt"] = L["Rustbolt"],
 --						["Oribos"] = L["Oribos"],
---						["Valdrakken"] = L["Valdrakken"],
---						["The Roasted Ram"] = L["The Roasted Ram"],
---						["Dornogal"] = L["Dornogal"],						
---						["Stonelight Rest"] = L["Stonelight Rest"],
---						["Delver's Headquarters"] = L["Delver's Headquarters"],
 					},
 				},
 				ShowOnDetection = {
 					name = L["ShowOnDetection"],
 					desc = L["ShowOnDetectionDescription"],
 					type = "toggle",
-					order = 8,
+					order = 7,
 					width = "full",
 					get = function(info)
 						return Spy.db.profile.ShowOnDetection
@@ -212,7 +190,7 @@ Spy.options = {
 					name = L["HideSpy"],
 					desc = L["HideSpyDescription"],
 					type = "toggle",
-					order = 9,
+					order = 8,
 					width = "full",
 					get = function(info)
 						return Spy.db.profile.HideSpy
@@ -241,7 +219,7 @@ Spy.options = {
 					name = L["ShowKoSButton"],
 					desc = L["ShowKoSButtonDescription"],
 					type = "toggle",
-					order = 10,
+					order = 9,
 					width = "full",
 					get = function(info)
 						return Spy.db.profile.ShowKoSButton
@@ -406,12 +384,11 @@ Spy.options = {
 					type = 'select',
 					order = 12,
 					values = {
-						["1NameLevelClass"] = L["Name"].." / "..L["Level"].." / "..L["Class"],
-						["2NameLevelGuild"] = L["Name"].." / "..L["Level"].." / "..L["Guild"],
-						["3NameLevelOnly"] = L["Name"].." / "..L["Level"],
-						["4NamePvPRank"] = L["Name"].." / "..L["Rank"],
-						["5NameGuild"] = L["Name"].." / "..L["Guild"],
-						["6NameOnly"] = L["Name"],
+						["NameLevelClass"] = L["Name"].." / "..L["Level"].." / "..L["Class"],
+						["NameLevelGuild"] = L["Name"].." / "..L["Level"].." / "..L["Guild"],
+						["NameLevelOnly"] = L["Name"].." / "..L["Level"],
+						["NameGuild"] = L["Name"].." / "..L["Guild"],
+						["NameOnly"] = L["Name"],
 					},
 					get = function()
 						return Spy.db.profile.DisplayListData
@@ -784,7 +761,7 @@ Spy.options = {
 								["Dwarf"] = L["Dwarf"],
 								["Night Elf"] = L["Night Elf"],
 								["Gnome"] = L["Gnome"],
---								["Draenei"] = L["Draenei"],
+								["Draenei"] = L["Draenei"],
 --								["Worgen"] = L["Worgen"],
 --								["Pandaren"] = L["Pandaren"],
 --								["Lightforged Draenei"] = L["Lightforged Draenei"],
@@ -792,8 +769,6 @@ Spy.options = {
 --								["Dark Iron Dwarf"] = L["Dark Iron Dwarf"],
 --								["Kul Tiran"] = L["Kul Tiran"],
 --								["Mechagnome"] = L["Mechagnome"],
---								["Dracthyr"] = L["Dracthyr"],
---								["Earthen"] = L["Earthen"],
 							},
 							Horde = {
 								["None"] = L["None"],
@@ -801,7 +776,7 @@ Spy.options = {
 								["Tauren"] = L["Tauren"],
 								["Troll"] = L["Troll"],
 								["Undead"] = L["Undead"],
---								["Blood Elf"] = L["Blood Elf"],
+								["Blood Elf"] = L["Blood Elf"],
 --								["Goblin"] = L["Goblin"],
 --								["Pandaren"] = L["Pandaren"],
 --								["Highmountain Tauren"] = L["Highmountain Tauren"],
@@ -809,8 +784,6 @@ Spy.options = {
 --								["Mag'har Orc"] = L["Mag'har Orc"],
 --								["Zandalari Troll"] = L["Zandalari Troll"],
 --								["Vulpera"] = L["Vulpera"],
---								["Dracthyr"] = L["Dracthyr"],
---								["Earthen"] = L["Earthen"],
 							},
 						}
 						if Spy.EnemyFactionName == "Alliance" then
@@ -1308,19 +1281,6 @@ Spy.optionsSlash = {
 				Spy:AlertStealthPlayer("Bazzalan")
 			end
 		},
---[[		sanc = {
-			name = L["Sanctuary"],
-			desc = L["SanctuaryDescription"],
-			type = 'execute',
-			order = 11,
-			func = function()
-				Spy.db.profile.EnabledInSanctuaries = not Spy.db.profile.EnabledInSanctuaries
-				Spy:ZoneChangedEvent()
-	--			Spy:UpdateMainWindow()
-	--			Spy:EnableSpy(false, true)
-			end,
-			dialogHidden = true
-		}, ]]--
 	},
 }
 
@@ -1376,7 +1336,6 @@ local Default_Profile = {
 --				["DEATHKNIGHT"] = { r = 0.77, g = 0.12, b = 0.23, a = 0.6 },
 --				["MONK"] = { r = 0.00, g = 1.00, b = 0.60, a = 0.6 },
 --				["DEMONHUNTER"] = { r = 0.64, g = 0.19, b = 0.79, a = 0.6 },
---				["EVOKER"] = { r = 0.20, g = 0.58, b = 0.50, a = 0.6 },
 				["PET"] = { r = 0.09, g = 0.61, b = 0.55, a = 0.6 },
 				["MOB"] = { r = 0.58, g = 0.24, b = 0.63, a = 0.6 },
 				["UNKNOWN"] = { r = 0.1, g = 0.1, b = 0.1, a = 0.6 },
@@ -1428,7 +1387,6 @@ local Default_Profile = {
 		Scaling=1,
 		Enabled=true,
 		EnabledInBattlegrounds=true,
-		EnabledInSanctuaries=false,
 		EnabledInArenas=true,
 		EnabledInWintergrasp=true,
 		DisableWhenPVPUnflagged=true,
@@ -1442,7 +1400,7 @@ local Default_Profile = {
 		DisplayWinLossStatistics=true,
 		DisplayKOSReason=true,
 		DisplayLastSeen=true,
-		DisplayListData="1NameLevelClass",
+		DisplayListData="NameLevelClass",
 		ShowOnDetection=true,
 		HideSpy=false,
 --		ShowOnlyPvPFlagged=false,
@@ -1479,25 +1437,17 @@ local Default_Profile = {
 			["Ratchet"] = false,
 			["Everlook"] = false,
 			["The Salty Sailor Tavern"] = false,
-			["Cenarion Hold"] = false,
---			["Shattrath City"] = false,
---			["Area 52"] = false,
+			["Shattrath City"] = false,
+			["Area 52"] = false,
 --			["Dalaran"] = false,
+--			["Dalaran (Northrend)"] = false,
 --			["Bogpaddle"] = false,
 --			["The Vindicaar"] = false,
 --			["Krasus' Landing"] = false,
 --			["The Violet Gate"] = false,
 --			["Magni's Encampment"] = false,
---			["Chamber of Heart"] = false,
---			["Hall of Ancient Paths"] = false,
---			["Sanctum of the Sages"] = false,
 --			["Rustbolt"] = false,
 --			["Oribos"] = false,
---			["Valdrakken"] = false,
---			["The Roasted Ram"] = false,
---			["Dornogal"] = false,
---			["Stonelight Rest"] = false,
---			["Delver's Headquarters"] = false,
 		},
 	},
 }
@@ -1567,9 +1517,9 @@ function Spy:CheckDatabase()
 	if Spy.db.profile.Colors["Class"]["DRUID"] == nil then Spy.db.profile.Colors["Class"]["DRUID"] = Default_Profile.profile.Colors["Class"]["DRUID"] end
 	if Spy.db.profile.Colors["Class"]["SHAMAN"] == nil then Spy.db.profile.Colors["Class"]["SHAMAN"] = Default_Profile.profile.Colors["Class"]["SHAMAN"] end
 	if Spy.db.profile.Colors["Class"]["WARRIOR"] == nil then Spy.db.profile.Colors["Class"]["WARRIOR"] = Default_Profile.profile.Colors["Class"]["WARRIOR"] end
---	if Spy.db.profile.Colors["Class"]["DEATHKNIGHT"] == nil then Spy.db.profile.Colors["Class"]["DEATHKNIGHT"] = Default_Profile.profile.Colors["Class"]["DEATHKNIGHT"] end
---	if Spy.db.profile.Colors["Class"]["MONK"] == nil then Spy.db.profile.Colors["Class"]["MONK"] = Default_Profile.profile.Colors["Class"]["MONK"] end
---	if Spy.db.profile.Colors["Class"]["DEMONHUNTER"] == nil then Spy.db.profile.Colors["Class"]["DEMONHUNTER"] = Default_Profile.profile.Colors["Class"]["DEMONHUNTER"] end	
+	if Spy.db.profile.Colors["Class"]["DEATHKNIGHT"] == nil then Spy.db.profile.Colors["Class"]["DEATHKNIGHT"] = Default_Profile.profile.Colors["Class"]["DEATHKNIGHT"] end
+	if Spy.db.profile.Colors["Class"]["MONK"] == nil then Spy.db.profile.Colors["Class"]["MONK"] = Default_Profile.profile.Colors["Class"]["MONK"] end
+	if Spy.db.profile.Colors["Class"]["DEMONHUNTER"] == nil then Spy.db.profile.Colors["Class"]["DEMONHUNTER"] = Default_Profile.profile.Colors["Class"]["DEMONHUNTER"] end	
 	if Spy.db.profile.Colors["Class"]["PET"] == nil then Spy.db.profile.Colors["Class"]["PET"] = Default_Profile.profile.Colors["Class"]["PET"] end
 	if Spy.db.profile.Colors["Class"]["MOB"] == nil then Spy.db.profile.Colors["Class"]["MOB"] = Default_Profile.profile.Colors["Class"]["MOB"] end
 	if Spy.db.profile.Colors["Class"]["UNKNOWN"] == nil then Spy.db.profile.Colors["Class"]["UNKNOWN"] = Default_Profile.profile.Colors["Class"]["UNKNOWN"] end
@@ -1604,7 +1554,6 @@ function Spy:CheckDatabase()
 	if Spy.db.profile.Scaling == nil then Spy.db.profile.Scaling = Default_Profile.profile.Scaling end
 	if Spy.db.profile.Enabled == nil then Spy.db.profile.Enabled = Default_Profile.profile.Enabled end
 	if Spy.db.profile.EnabledInBattlegrounds == nil then Spy.db.profile.EnabledInBattlegrounds = Default_Profile.profile.EnabledInBattlegrounds end
-	if Spy.db.profile.EnabledInSanctuaries == nil then Spy.db.profile.EnabledInSanctuaries = Default_Profile.profile.EnabledInSanctuaries end
 	if Spy.db.profile.EnabledInArenas == nil then Spy.db.profile.EnabledInArenas = Default_Profile.profile.EnabledInArenas end
 	if Spy.db.profile.EnabledInWintergrasp == nil then Spy.db.profile.EnabledInWintergrasp = Default_Profile.profile.EnabledInWintergrasp end
 	if Spy.db.profile.DisableWhenPVPUnflagged == nil then Spy.db.profile.DisableWhenPVPUnflagged = Default_Profile.profile.DisableWhenPVPUnflagged end
@@ -1679,6 +1628,7 @@ function Spy:SetupOptions()
 	self.optionsFrames.About = ACD3:AddToBlizOptions("Spy", L["About"], L["Spy Option"], "About")
 	self.optionsFrames.DisplayOptions = ACD3:AddToBlizOptions("Spy", L["DisplayOptions"], L["Spy Option"], "DisplayOptions")
 	self.optionsFrames.AlertOptions = ACD3:AddToBlizOptions("Spy", L["AlertOptions"], L["Spy Option"], "AlertOptions")
+--	self.optionsFrames.ListOptions = ACD3:AddToBlizOptions("Spy", L["ListOptions"], L["Spy Option"], "ListOptions")
 	self.optionsFrames.MapOptions = ACD3:AddToBlizOptions("Spy", L["MapOptions"], L["Spy Option"], "MapOptions")
 	self.optionsFrames.DataOptions = ACD3:AddToBlizOptions("Spy", L["DataOptions"], L["Spy Option"], "DataOptions")
 
@@ -1724,10 +1674,8 @@ end
 
 function Spy:ShowConfig()
 	-- Opens the profile tab first so the menu expands
---	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.Profiles)
-	Settings.OpenToCategory('Profiles')
---	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.Spy)
-	Settings.OpenToCategory('Spy')
+	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.Profiles)
+	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.Spy)
 end
 
 function Spy:OnEnable(first)
@@ -1833,8 +1781,7 @@ function Spy:OnInitialize()
 		["WARRIOR"] = true,
 --		["DEATHKNIGHT"] = true,
 --		["MONK"] = true,
---		["DEMONHUNTER"] = true,
---		["EVOKER"] = true,
+--		["DEMONHUNTER"] = true
 	}
 
 	Spy.ValidRaces = {
@@ -1846,8 +1793,8 @@ function Spy:OnInitialize()
 		["NightElf"] = true,
 		["Scourge"] = true,
 		["Gnome"] = true,
---		["BloodElf"] = true,
---		["Draenei"] = true,
+		["BloodElf"] = true,
+		["Draenei"] = true,
 --		["Goblin"] = true,
 --		["Worgen"] = true,
 --		["Pandaren"] = true,
@@ -1861,8 +1808,6 @@ function Spy:OnInitialize()
 --		["ZandalariTroll"] = true,
 --		["Mechagnome"] = true,
 --		["Vulpera"] = true,
---		["Dracthyr"] = true,
---		["Earthen"] = true,
 	}
 
 	local acedb = LibStub:GetLibrary("AceDB-3.0")
@@ -1902,7 +1847,7 @@ function Spy:OnInitialize()
 	Spy:ClampToScreen(Spy.db.profile.ClampToScreen)	
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", Spy.FilterNotInParty)
 	Spy.WoWBuildInfo = select(4, GetBuildInfo())
-	if Spy.WoWBuildInfo > 20000 then
+	if Spy.WoWBuildInfo < 20000 or Spy.WoWBuildInfo > 30000 then
 		DEFAULT_CHAT_FRAME:AddMessage(L["VersionCheck"])
 	end
 end
@@ -1916,6 +1861,9 @@ function Spy:ChannelNoticeEvent(_, chStatus, _, _, Channel)
 		if InFilteredZone then
 			Spy.EnabledInZone = false
 		end
+--		if (zone == L["Silithus"] and (subZone == L["Hall of Ancient Paths"] or L["Sanctum of the Sages"]) or zone == L["Chamber of Heart"]) then
+--			Spy.EnabledInZone = false
+--		end
 	end
 end
 
@@ -1955,29 +1903,24 @@ function Spy:ZoneChanged()
 	local pvpType = GetZonePVPInfo()
  	local zone = GetZoneText()
 	local subZone = GetSubZoneText()
-	local InFilteredZone = Spy:InFilteredZone(zone, subZone)
-	if pvpType == "sanctuary" and not Spy.db.profile.EnabledInSanctuaries then
+	local InFilteredZone = Spy:InFilteredZone(subZone)
+	if pvpType == "sanctuary" or zone == "" or InFilteredZone then
 		Spy.EnabledInZone = false
 	else
 		Spy.EnabledInZone = true
-		if zone == "" or InFilteredZone then
-			Spy.EnabledInZone = false
-		else
-			Spy.EnabledInZone = true
-			local inInstance, instanceType = IsInInstance()
-			if inInstance then
-				Spy.InInstance = true
-				if instanceType == "party" or instanceType == "raid" or (not Spy.db.profile.EnabledInBattlegrounds and instanceType == "pvp") or (not Spy.db.profile.EnabledInArenas and instanceType == "arena") then
-					Spy.EnabledInZone = false
-				end
-			elseif pvpType == "combat" then
-				if not Spy.db.profile.EnabledInWintergrasp then
-					Spy.EnabledInZone = false
-				end
---			elseif (pvpType == "friendly" or pvpType == nil) then
-			elseif UnitIsPVP("player") == false and Spy.db.profile.DisableWhenPVPUnflagged then
+		local inInstance, instanceType = IsInInstance()
+		if inInstance then
+			Spy.InInstance = true
+			if instanceType == "party" or instanceType == "raid" or (not Spy.db.profile.EnabledInBattlegrounds and instanceType == "pvp") or (not Spy.db.profile.EnabledInArenas and instanceType == "arena") then
 				Spy.EnabledInZone = false
---				end
+			end
+		elseif pvpType == "combat" then
+			if not Spy.db.profile.EnabledInWintergrasp then
+				Spy.EnabledInZone = false
+			end
+		elseif (pvpType == "friendly" or pvpType == nil) then
+			if UnitIsPVP("player") == false and Spy.db.profile.DisableWhenPVPUnflagged then
+				Spy.EnabledInZone = false
 			end
 		end
 	end
@@ -1993,14 +1936,12 @@ function Spy:ZoneChanged()
 	Spy:UpdateMainWindow()
 end
 
-function Spy:InFilteredZone(zone, subzone)
+function Spy:InFilteredZone(subzone)
 	local InFilteredZone = false
 	for filteredZone, value in pairs(Spy.db.profile.FilteredZones) do
-		if zone == filteredZone and value then
+		if subzone == filteredZone and value then
 			InFilteredZone = true
-		elseif subzone == filteredZone and value then
-			InFilteredZone = true
---			break
+			break
 		end
 	end
 	return InFilteredZone
@@ -2020,7 +1961,6 @@ function Spy:PlayerTargetEvent()
 			local race = select(1,UnitRace("target"))
 			local level = tonumber(UnitLevel("target"))
 			local guild = GetGuildInfo("target")
-			local faction = select(1,UnitFactionGroup("target"))
 			local guess = false
 			if level == Spy.Skull then
 				if playerData and playerData.level then
@@ -2039,12 +1979,8 @@ function Spy:PlayerTargetEvent()
 --				guess = true
 --				level = nil
 			end
-			local rankName, rank = GetPVPRankInfo(UnitPVPRank("target"))
-			if ( not rank ) then
-				rank = nil
-			end
 			
-			Spy:UpdatePlayerData(name, class, level, race, guild, faction, true, guess, rank)
+			Spy:UpdatePlayerData(name, class, level, race, guild, true, guess)
 			if Spy.EnabledInZone then
 				Spy:AddDetected(name, time(), learnt)
 			end
@@ -2068,7 +2004,6 @@ function Spy:PlayerMouseoverEvent()
 			local race = select(1,UnitRace("mouseover"))
 			local level = tonumber(UnitLevel("mouseover"))
 			local guild = GetGuildInfo("mouseover")
-			local faction = select(1,UnitFactionGroup("mouseover"))
 			local guess = false
 			if level == Spy.Skull then
 				if playerData and playerData.level then
@@ -2087,12 +2022,8 @@ function Spy:PlayerMouseoverEvent()
 --				guess = true
 --				level = nil
 			end
-			local rankName, rank = GetPVPRankInfo(UnitPVPRank("mouseover"))
-			if ( not rank ) then
-				rank = nil
-			end
 
-			Spy:UpdatePlayerData(name, class, level, race, guild, faction, true, guess, rank)
+			Spy:UpdatePlayerData(name, class, level, race, guild, true, guess)
 			if Spy.EnabledInZone then
 				Spy:AddDetected(name, time(), learnt)
 			end
@@ -2116,7 +2047,6 @@ function Spy:NamePlateEvent(_, unit)
 			local race = select(1,UnitRace(unit))
 			local level = tonumber(UnitLevel(unit))
 			local guild = GetGuildInfo(unit)
-			local faction = select(1,UnitFactionGroup(unit))
 			local guess = false
 			if level == Spy.Skull then
 				if playerData and playerData.level then
@@ -2135,12 +2065,8 @@ function Spy:NamePlateEvent(_, unit)
 --				guess = true
 --				level = nil
 			end
-			local rankName, rank = GetPVPRankInfo(UnitPVPRank(unit))
-			if ( not rank ) then
-				rank = nil
-			end
 
-			Spy:UpdatePlayerData(name, class, level, race, guild, faction, true, guess, rank)
+			Spy:UpdatePlayerData(name, class, level, race, guild, true, guess)
 			if Spy.EnabledInZone then
 				Spy:AddDetected(name, time(), learnt)
 			end
@@ -2184,7 +2110,7 @@ timestamp, event, hideCaster, srcGUID, srcName, srcFlags, sourceRaidFlags, dstGU
 					learnt, playerData = Spy:ParseUnitAbility(true, event, srcName, class, race, arg12, arg13)
 				end
 				if not learnt then
-					detected = Spy:UpdatePlayerData(srcName, class, nil, race, nil, nil, true, nil, nil)
+					detected = Spy:UpdatePlayerData(srcName, class, nil, race, nil, true, nil)
 				end
 
 				if detected then
@@ -2196,11 +2122,10 @@ timestamp, event, hideCaster, srcGUID, srcName, srcFlags, sourceRaidFlags, dstGU
 						Spy:AlertProwlPlayer(srcName)
 					end
 				end
-			end
 
-			if dstGUID == UnitGUID("player") then
-				Spy.LastAttack = srcName
-				Spy.LastAttackTime = GetTime()
+				if dstGUID == UnitGUID("player") then
+					Spy.LastAttack = srcName
+				end
 			end
 		end
 
@@ -2222,7 +2147,7 @@ timestamp, event, hideCaster, srcGUID, srcName, srcFlags, sourceRaidFlags, dstGU
 					learnt, playerData = Spy:ParseUnitAbility(false, event, dstName, class, race, arg12, arg13)
 				end
 				if not learnt then
-					detected = Spy:UpdatePlayerData(dstName, class, nil, race, nil, nil, true, nil, nil)
+					detected = Spy:UpdatePlayerData(dstName, class, nil, race, nil, true, nil)
 				end
 				if detected then
 					Spy:AddDetected(dstName, timestamp, learnt)
@@ -2273,12 +2198,6 @@ timestamp, event, hideCaster, srcGUID, srcName, srcFlags, sourceRaidFlags, dstGU
 		if event == "SPELL_SUMMON" and srcName == Spy.CharacterName then
 			local petGUID = dstGUID
 			Spy.PetGUID[petGUID] = time()
-		end
-		if event == "ENVIRONMENTAL_DAMAGE" and dstGUID == UnitGUID("player") then
---			local environmentalType = arg12
---			local amount = arg13
-			Spy.LastAttack = nil		
---			print(timestamp, "Ouch ", environmentalType, amount, " hurts!")
 		end		
 	end
 end
@@ -2290,16 +2209,12 @@ end
 
 function Spy:PlayerDeadEvent()
 	if Spy.LastAttack then
-		local timeDiff = GetTime() - Spy.LastAttackTime
-		if (timeDiff < .5 ) then
---			print("Killed by ", Spy.LastAttack, " ", timeDiff, " seconds ago")
-			local playerData = SpyPerCharDB.PlayerData[Spy.LastAttack]
-			if playerData then
-				if not playerData.loses then
-					playerData.loses = 0
-				end
-				playerData.loses = playerData.loses + 1
+		local playerData = SpyPerCharDB.PlayerData[Spy.LastAttack]
+		if playerData then
+			if not playerData.loses then
+				playerData.loses = 0
 			end
+			playerData.loses = playerData.loses + 1
 		end
 	end
 end

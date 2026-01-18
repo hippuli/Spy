@@ -1346,7 +1346,8 @@ function Spy:CreateKoSButton()
 	end
 end
 
-hooksecurefunc("TargetFrame_Update", function()
+--hooksecurefunc("TargetFrame_Update", function()
+hooksecurefunc(TargetFrame, "Update", function()
 	if Spy.db.profile.ShowKoSButton then
 		if (UnitIsEnemy("player","target") and UnitIsPlayer("target")) then
 			local name = GetUnitName("target", true)	

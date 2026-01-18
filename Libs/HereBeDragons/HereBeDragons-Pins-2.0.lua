@@ -1,14 +1,12 @@
 -- HereBeDragons-Pins is a library to show pins/icons on the world map and minimap
 
-local MAJOR, MINOR = "HereBeDragons-Pins-2.0", 14
+local MAJOR, MINOR = "HereBeDragons-Pins-2.0", 6
 assert(LibStub, MAJOR .. " requires LibStub")
 
 local pins, _oldversion = LibStub:NewLibrary(MAJOR, MINOR)
 if not pins then return end
 
 local HBD = LibStub("HereBeDragons-2.0")
-
-local MinimapRadiusAPI = C_Minimap and C_Minimap.GetViewRadius
 
 pins.updateFrame          = pins.updateFrame or CreateFrame("Frame")
 
@@ -20,18 +18,9 @@ pins.minimapPinRegistry   = pins.minimapPinRegistry or {}
 -- and worldmap pins
 pins.worldmapPins         = pins.worldmapPins or {}
 pins.worldmapPinRegistry  = pins.worldmapPinRegistry or {}
-
+pins.worldmapPinsPool     = pins.worldmapPinsPool or CreateFramePool("FRAME")
 pins.worldmapProvider     = pins.worldmapProvider or CreateFromMixins(MapCanvasDataProviderMixin)
 pins.worldmapProviderPin  = pins.worldmapProviderPin or CreateFromMixins(MapCanvasPinMixin)
-
-if not pins.worldmapPinsPool then
-    -- new frame pools in WoW 11.x
-    if CreateUnsecuredRegionPoolInstance then
-        pins.worldmapPinsPool = CreateUnsecuredRegionPoolInstance("HereBeDragonsPinsTemplate")
-    else
-        pins.worldmapPinsPool = CreateFramePool("FRAME")
-    end
-end
 
 -- store a reference to the active minimap object
 pins.Minimap = pins.Minimap or Minimap
@@ -225,13 +214,9 @@ local function UpdateMinimapPins(force)
     if x ~= lastXY or y ~= lastYY or diffZoom or facing ~= lastFacing or force then
         -- minimap information
         minimapShape = GetMinimapShape and minimap_shapes[GetMinimapShape() or "ROUND"]
+        mapRadius = minimap_size[indoors][zoom] / 2
         minimapWidth = pins.Minimap:GetWidth() / 2
         minimapHeight = pins.Minimap:GetHeight() / 2
-        if MinimapRadiusAPI then
-            mapRadius = C_Minimap.GetViewRadius()
-        else
-            mapRadius = minimap_size[indoors][zoom] / 2
-        end
 
         -- update upvalues for icon placement
         lastZoom = zoom
@@ -304,11 +289,7 @@ local function UpdateMinimapIconPosition()
 
     if x ~= lastXY or y ~= lastYY or facing ~= lastFacing or refresh then
         -- update radius of the map
-        if MinimapRadiusAPI then
-            mapRadius = C_Minimap.GetViewRadius()
-        else
-            mapRadius = minimap_size[indoors][zoom] / 2
-        end
+        mapRadius = minimap_size[indoors][zoom] / 2
         -- update upvalues for icon placement
         lastXY, lastYY = x, y
         lastFacing = facing
@@ -327,14 +308,12 @@ local function UpdateMinimapIconPosition()
 end
 
 local function UpdateMinimapZoom()
-    if not MinimapRadiusAPI then
-        local zoom = pins.Minimap:GetZoom()
-        if GetCVar("minimapZoom") == GetCVar("minimapInsideZoom") then
-            pins.Minimap:SetZoom(zoom < 2 and zoom + 1 or zoom - 1)
-        end
-        indoors = GetCVar("minimapZoom")+0 == pins.Minimap:GetZoom() and "outdoor" or "indoor"
-        pins.Minimap:SetZoom(zoom)
+    local zoom = pins.Minimap:GetZoom()
+    if GetCVar("minimapZoom") == GetCVar("minimapInsideZoom") then
+        pins.Minimap:SetZoom(zoom < 2 and zoom + 1 or zoom - 1)
     end
+    indoors = GetCVar("minimapZoom")+0 == pins.Minimap:GetZoom() and "outdoor" or "indoor"
+    pins.Minimap:SetZoom(zoom)
 end
 
 -------------------------------------------------------------------------------------------
@@ -342,23 +321,18 @@ end
 
 -- setup pin pool
 worldmapPinsPool.parent = WorldMapFrame:GetCanvas()
-worldmapPinsPool.createFunc = function()
-    local frame = CreateFrame("Frame", nil, WorldMapFrame:GetCanvas())
+worldmapPinsPool.creationFunc = function(framePool)
+    local frame = CreateFrame(framePool.frameType, nil, framePool.parent)
     frame:SetSize(1, 1)
     return Mixin(frame, worldmapProviderPin)
 end
-worldmapPinsPool.resetFunc = function(pinPool, pin)
-    pin:Hide()
-    pin:ClearAllPoints()
+worldmapPinsPool.resetterFunc = function(pinPool, pin)
+    FramePool_HideAndClearAnchors(pinPool, pin)
     pin:OnReleased()
 
     pin.pinTemplate = nil
     pin.owningMap = nil
 end
-
--- pre-11.x func names
-worldmapPinsPool.creationFunc = worldmapPinsPool.createFunc
-worldmapPinsPool.resetterFunc = worldmapPinsPool.resetFunc
 
 -- register pin pool with the world map
 WorldMapFrame.pinPools["HereBeDragonsPinsTemplate"] = worldmapPinsPool
@@ -478,9 +452,6 @@ function worldmapProviderPin:OnReleased()
     end
 end
 
--- hack to avoid in-combat error on 10.1.5
-worldmapProviderPin.SetPassThroughButtons = function() end
-
 -- register with the world map
 WorldMapFrame:AddDataProvider(worldmapProvider)
 
@@ -510,7 +481,7 @@ pins.updateFrame:SetScript("OnUpdate", OnUpdateHandler)
 local function OnEventHandler(frame, event, ...)
     if event == "CVAR_UPDATE" then
         local cvar, value = ...
-        if cvar == "rotateMinimap" or cvar == "ROTATE_MINIMAP" then
+        if cvar == "ROTATE_MINIMAP" then
             rotateMinimap = (value == "1")
             queueFullUpdate = true
         end
@@ -545,7 +516,7 @@ HBD.RegisterCallback(pins, "PlayerZoneChanged", UpdateMinimap)
 -- @param floatOnEdge flag if the icon should float on the edge of the minimap when going out of range, or hide immediately (default false)
 function pins:AddMinimapIconWorld(ref, icon, instanceID, x, y, floatOnEdge)
     if not ref then
-        error(MAJOR..": AddMinimapIconWorld: 'ref' must not be nil", 2)
+        error(MAJOR..": AddMinimapIconWorld: 'ref' must not be nil")
     end
     if type(icon) ~= "table" or not icon.SetPoint then
         error(MAJOR..": AddMinimapIconWorld: 'icon' must be a frame", 2)
@@ -585,13 +556,13 @@ end
 -- @param floatOnEdge flag if the icon should float on the edge of the minimap when going out of range, or hide immediately (default false)
 function pins:AddMinimapIconMap(ref, icon, uiMapID, x, y, showInParentZone, floatOnEdge)
     if not ref then
-        error(MAJOR..": AddMinimapIconMap: 'ref' must not be nil", 2)
+        error(MAJOR..": AddMinimapIconMap: 'ref' must not be nil")
     end
     if type(icon) ~= "table" or not icon.SetPoint then
-        error(MAJOR..": AddMinimapIconMap: 'icon' must be a frame", 2)
+        error(MAJOR..": AddMinimapIconMap: 'icon' must be a frame")
     end
     if type(uiMapID) ~= "number" or type(x) ~= "number" or type(y) ~= "number" then
-        error(MAJOR..": AddMinimapIconMap: 'uiMapID', 'x' and 'y' must be numbers", 2)
+        error(MAJOR..": AddMinimapIconMap: 'uiMapID', 'x' and 'y' must be numbers")
     end
 
     -- convert to world coordinates and use our known adding function
@@ -671,16 +642,13 @@ HBD_PINS_WORLDMAP_SHOW_WORLD     = 3
 -- @param frameLevel Optional Frame Level type registered with the WorldMapFrame, defaults to PIN_FRAME_LEVEL_AREA_POI
 function pins:AddWorldMapIconWorld(ref, icon, instanceID, x, y, showFlag, frameLevel)
     if not ref then
-        error(MAJOR..": AddWorldMapIconWorld: 'ref' must not be nil", 2)
+        error(MAJOR..": AddWorldMapIconWorld: 'ref' must not be nil")
     end
     if type(icon) ~= "table" or not icon.SetPoint then
         error(MAJOR..": AddWorldMapIconWorld: 'icon' must be a frame", 2)
     end
     if type(instanceID) ~= "number" or type(x) ~= "number" or type(y) ~= "number" then
         error(MAJOR..": AddWorldMapIconWorld: 'instanceID', 'x' and 'y' must be numbers", 2)
-    end
-    if showFlag ~= nil and type(showFlag) ~= "number" then
-        error(MAJOR..": AddWorldMapIconWorld: 'showFlag' must be a number (or nil)", 2)
     end
 
     if not worldmapPinRegistry[ref] then
@@ -712,16 +680,13 @@ end
 -- @param frameLevel Optional Frame Level type registered with the WorldMapFrame, defaults to PIN_FRAME_LEVEL_AREA_POI
 function pins:AddWorldMapIconMap(ref, icon, uiMapID, x, y, showFlag, frameLevel)
     if not ref then
-        error(MAJOR..": AddWorldMapIconMap: 'ref' must not be nil", 2)
+        error(MAJOR..": AddWorldMapIconMap: 'ref' must not be nil")
     end
     if type(icon) ~= "table" or not icon.SetPoint then
-        error(MAJOR..": AddWorldMapIconMap: 'icon' must be a frame", 2)
+        error(MAJOR..": AddWorldMapIconMap: 'icon' must be a frame")
     end
     if type(uiMapID) ~= "number" or type(x) ~= "number" or type(y) ~= "number" then
-        error(MAJOR..": AddWorldMapIconMap: 'uiMapID', 'x' and 'y' must be numbers", 2)
-    end
-    if showFlag ~= nil and type(showFlag) ~= "number" then
-        error(MAJOR..": AddWorldMapIconMap: 'showFlag' must be a number (or nil)", 2)
+        error(MAJOR..": AddWorldMapIconMap: 'uiMapID', 'x' and 'y' must be numbers")
     end
 
     -- convert to world coordinates

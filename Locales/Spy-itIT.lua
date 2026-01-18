@@ -77,7 +77,6 @@ L["Hall of Ancient Paths"] = "Sala dei Percorsi Antichi"
 L["Sanctum of the Sages"] = "Santuario dei Saggi"
 L["Rustbolt"] = "Bullonaccio"
 L["Oribos"] = "Oribos"
-L["Valdrakken"] = "Valdrakken"
 
 -- Display
 L["DisplayOptions"] = "Display"
@@ -301,10 +300,10 @@ L["HonorKills"] = "Honor Kills"
 L["PvPDeaths"] = "PvP Deaths"
 
 -- Output messages
-L["VersionCheck"] = "|cffc41e3aAvvertimento! È installata la versione errata di Spy. Questa versione è per Wrath of the Lich King - Classic."
+L["VersionCheck"] = "|cffc41e3aAvvertimento! È installata la versione errata di Spy. Questa versione è per Burning Crusade Classic."
 L["SpyEnabled"] = "|cff9933ffSpy addon enabled."
 L["SpyDisabled"] = "|cff9933ffSpy addon disabled. Type |cffffffff/spy show|cff9933ff to enable."
-L["UpgradeAvailable"] = "|cff9933ffA new version of Spy is available. It can be downloaded from:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-wotlk"
+L["UpgradeAvailable"] = "|cff9933ffA new version of Spy is available. It can be downloaded from:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-tbc"
 L["AlertStealthTitle"] = "Stealth player detected!"
 L["AlertKOSTitle"] = "Kill On Sight player detected!"
 L["AlertKOSGuildTitle"] = "Kill On Sight player guild detected!"
@@ -472,7 +471,6 @@ L["WARRIOR"] = "Guerriero"
 L["DEATHKNIGHT"] = "Cavaliere della Morte"
 L["MONK"] = "Monk"
 L["DEMONHUNTER"] = "Cacciatore di Demoni"
-L["EVOKER"] = "Evocatore"
 
 -- Race descriptions
 L["Human"] = "Umano"
@@ -498,7 +496,6 @@ L["Kul Tiran"] = "Kul Tirano"
 L["Zandalari Troll"] = "Troll Zandalari"
 L["Mechagnome"] = "Meccagnomo"
 L["Vulpera"] = "Vulpera"
-L["Dracthyr"] = "Dracthyr"
  
 --Abilità stealth
 L["Stealth"] = "Furtività"
@@ -519,8 +516,8 @@ L["MinimapClassTextWARRIOR"] = "|cffc69b6d"
 L["MinimapClassTextDEATHKNIGHT"] = "|cffc41e3a"
 L["MinimapClassTextMONK"] = "|cff00ff96"
 L["MinimapClassTextDEMONHUNTER"] = "|cffa330c9"
-L["MinimapClassTextEVOKER"] = "|cff33937f"
 
 Spy_IgnoreList = {
 
 };
+ 
