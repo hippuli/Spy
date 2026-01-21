@@ -44,7 +44,7 @@ If enabled, this button will be located on the enemy players target frame. Click
 L["GeneralSettings"] = "General Settings"
 L["GeneralSettingsDescription"] = [[
 Options for when Spy is Enabled or Disabled.
-]] 
+]]
 L["EnableSpy"] = "Enable Spy"
 L["EnableSpyDescription"] = "Enables or disables Spy."
 L["EnabledInBattlegrounds"] = "Enable Spy in battlegrounds"
@@ -53,7 +53,9 @@ L["EnabledInArenas"] = "Enable Spy in arenas"
 L["EnabledInArenasDescription"] = "Enables or disables Spy when you are in an arena."
 L["EnabledInWintergrasp"] = "Enable Spy in world combat zones"
 L["EnabledInWintergraspDescription"] = "Enables or disables Spy when you are in world combat zones such as Lake Wintergrasp in Northrend."
-L["DisableWhenPVPUnflagged"] = "Disable Spy when not flagged for PVP"
+L["EnabledInSanctuaries"] = "Enable Spy in sanctuaries"
+L["EnabledInSanctuariesDescription"] = "Enables or disables Spy when you are in a sanctuary."
+L["DisableWhenPVPUnflagged"] = "Disable Spy when not flagged for PvP"
 L["DisableWhenPVPUnflaggedDescription"] = "Enables or disables Spy depending on your PVP status."
 L["DisabledInZones"] = "Disable Spy while in these locations"
 L["DisabledInZonesDescription"]	= "Select locations where Spy will be disabled"
@@ -62,10 +64,10 @@ L["Everlook"] = "Everlook"
 L["Gadgetzan"] = "Gadgetzan"
 L["Ratchet"] = "Ratchet"
 L["The Salty Sailor Tavern"] = "The Salty Sailor Tavern"
+L["Cenarion Hold"] = "Cenarion Hold"
 L["Shattrath City"] = "Shattrath City"
 L["Area 52"] = "Area 52"
 L["Dalaran"] = "Dalaran"
-L["Dalaran (Northrend)"] = "Dalaran (Northrend)"
 L["Bogpaddle"] = "Bogpaddle"
 L["The Vindicaar"] = "The Vindicaar"
 L["Krasus' Landing"] = "Krasus' Landing"
@@ -77,6 +79,11 @@ L["Hall of Ancient Paths"] = "Hall of Ancient Paths"
 L["Sanctum of the Sages"] = "Sanctum of the Sages"
 L["Rustbolt"] = "Rustbolt"
 L["Oribos"] = "Oribos"
+L["Valdrakken"] = "Valdrakken"
+L["The Roasted Ram"] = "The Roasted Ram"
+L["Dornogal"] = "Dornogal"
+L["Stonelight Rest"] = "Stonelight Rest"
+L["Delver's Headquarters"] = "Delver's Headquarters"
 
 -- Display
 L["DisplayOptions"] = "Display"
@@ -125,6 +132,7 @@ L["TooltipDisplayLastSeenDescription"] = "Set this to display the last known tim
 L["DisplayListData"] = "Select enemy data to display"
 L["Name"] = "Name"
 L["Class"] = "Class"
+L["Rank"] = "Rank"
 L["SelectFont"] = "Select a Font"
 L["SelectFontDescription"] = "Select a Font for the Spy Window."
 L["RowHeight"] = "Select the Row Height"
@@ -168,8 +176,8 @@ L["WarnOnRaceDescription"] = "Set this to sound an alert when the selected Race 
 L["SelectWarnRace"] = "Select Race for detection"
 L["SelectWarnRaceDescription"] = "Select a Race for audio alert."
 L["WarnRaceNote"] = "Note: You must target an enemy at least once so their Race can be added to the database. Upon the next detection an alert will sound. This does not work the same as detecting nearby enemies in combat."
---L["DisplayWarningsInErrorsFrame"] = "Display warnings in the errors frame"
---L["DisplayWarningsInErrorsFrameDescription"] = "Set this to use the errors frame to display warnings instead of using the graphical popup frames."
+L["DisplayWarningsInErrorsFrame"] = "Display warnings in the errors frame"
+L["DisplayWarningsInErrorsFrameDescription"] = "Set this to use the errors frame to display warnings instead of using the graphical popup frames."
 L["DisplayWarnings"] = "Select warnings message location"
 L["Default"] = "Default"
 L["ErrorFrame"] = "Error Frame"
@@ -278,6 +286,8 @@ L["Ignore"] = "Ignore"
 L["IgnoreDescription"] = "Add/remove a player to/from the Ignore list."
 L["Test"] = "Test"
 L["TestDescription"] = "Shows a warning so it can be repositioned."
+L["Sanctuary"] = "Sanctuary"
+L["SanctuaryDescription"] = "Show/Hide Spy in a Sanctuary area."
 
 -- Lists
 L["Nearby"] = "Nearby"
@@ -300,7 +310,7 @@ L["HonorKills"] = "Honor Kills"
 L["PvPDeaths"] = "PvP Deaths"
 
 -- Output Messages
-L["VersionCheck"] = "|cffc41e3aWarning! The wrong version of Spy is installed. This version is for Burning Crusade Classic."
+L["VersionCheck"] = "|cffc41e3aWarning! The wrong version of Spy is installed. Uninstall this version and install the one that matches your current game version."
 L["SpyEnabled"] = "|cff9933ffSpy addon enabled."
 L["SpyDisabled"] = "|cff9933ffSpy addon disabled. Type |cffffffff/spy show|cff9933ff to enable."
 L["UpgradeAvailable"] = "|cff9933ffA new version of Spy is available. It can be downloaded from:\n|cffffffffhttps://www.curseforge.com/wow/addons/spy-tbc"
@@ -337,7 +347,7 @@ L["ClearDescription"] = "|cffffffffClears the list of players that have been det
 L["SoundEnabled"] = "Audio alerts enabled"
 L["SoundDisabled"] = "Audio alerts disabled"
 L["NearbyCount"] = "Nearby Count"
-L["NearbyCountDescription"] = "|cffffffffCount of nearby players."
+L["NearbyCountDescription"] = "|cffffffffNumber of nearby players."
 L["Statistics"] = "Statistics"
 L["StatsDescription"] = "|cffffffffShows a list of enemy players encountered, win/loss records and where they were last seen."
 L["AddToIgnoreList"] = "Add to Ignore list"
@@ -355,12 +365,13 @@ L["Player"] = " (Player)"
 L["KOSReason"] = "Kill On Sight"
 L["KOSReasonIndent"] = "    "
 L["KOSReasonOther"] = "Enter your own reason..."
+L["EnterKOSReason"] = "Enter the Kill On Sight reason for %s"
 L["KOSReasonClear"] = "Clear Reason"
 L["StatsWins"] = "|cff40ff00Wins: "
 L["StatsSeparator"] = "  "
 L["StatsLoses"] = "|cff0070ddLosses: "
 L["Located"] = "located:"
-L["Yards"] = "yards"
+L["DistanceUnit"] = "yards"
 L["LocalDefenseChannelName"] = "LocalDefense"
 
 Spy_KOSReasonListLength = 6
@@ -383,7 +394,7 @@ Spy_KOSReasonList = {
 			"Ambushed me",
 			"Always attacks me on sight",
 			"Killed me with a higher level character",
-			"Steamrolled me with a group of enemies",
+			"Killed me with a group of enemies",
 			"Doesn't attack without backup",
 			"Always calls for help",
 			"Uses too much crowd control",
@@ -438,25 +449,6 @@ Spy_KOSReasonList = {
 	},
 }
 
-StaticPopupDialogs["Spy_SetKOSReasonOther"] = {
-	preferredIndex=STATICPOPUPS_NUMDIALOGS,  -- http://forums.wowace.com/showthread.php?p=320956
-	text = "Enter the Kill On Sight reason for %s:",
-	button1 = "Set",
-	button2 = "Cancel",
-	timeout = 120,
-	hasEditBox = 1,
-	editBoxWidth = 260,	
-	whileDead = 1,
-	hideOnEscape = 1,
-	OnShow = function(self)
-		self.editBox:SetText("");
-	end,
-    OnAccept = function(self)
-		local reason = self.editBox:GetText()
-		Spy:SetKOSReason(self.playerName, "Enter your own reason...", reason)
-	end,
-};
-
 -- Class descriptions
 L["UNKNOWN"] = "Unknown"
 L["DRUID"] = "Druid"
@@ -471,6 +463,7 @@ L["WARRIOR"] = "Warrior"
 L["DEATHKNIGHT"] = "Death Knight"
 L["MONK"] = "Monk"
 L["DEMONHUNTER"] = "Demon Hunter"
+L["EVOKER"] = "Evoker"
 
 -- Race descriptions
 L["Human"] = "Human"
@@ -496,6 +489,8 @@ L["Kul Tiran"] = "Kul Tiran"
 L["Zandalari Troll"] = "Zandalari Troll"
 L["Mechagnome"] = "Mechagnome"
 L["Vulpera"] = "Vulpera"
+L["Dracthyr"] = "Dracthyr"
+L["Earthen"] = "Earthen"
 
 -- Stealth abilities
 L["Stealth"] = "Stealth"
@@ -516,6 +511,7 @@ L["MinimapClassTextWARRIOR"] = "|cffc69b6d"
 L["MinimapClassTextDEATHKNIGHT"] = "|cffc41e3a"
 L["MinimapClassTextMONK"] = "|cff00ff96"
 L["MinimapClassTextDEMONHUNTER"] = "|cffa330c9"
+L["MinimapClassTextEVOKER"] = "|cff33937f"
 
 Spy_IgnoreList = {
 	["Mailbox"]=true, ["Shred Master Mk1"]=true, ["Scrap-O-Matic 1000"]=true,
