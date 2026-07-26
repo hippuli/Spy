@@ -1,6 +1,6 @@
-﻿## Interface: 20505
+﻿## Interface: 20506
 ## Title: Spy
-## Version: 2.1.0
+## Version: 2.1.1
 ## Notes: Detects and alerts you to the presence of nearby enemy players.
 ## Notes-deDE: Detektiert und warnt Sie vor, in der Nähe befindlichen, Gegnern.
 ## Notes-esES: Detecta y te alerta sobre la presencia de jugadores enemigos cercanos.
